@@ -1,0 +1,57 @@
+.imgPreview{
+    position: relative;
+    width: 100%;
+    // margin-left: 10%;
+    height: 250px;
+    background-color: gray;
+  }
+  
+
+  .image{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+
+  .carousel-item{
+    width: 100%;
+    height: 370px;
+    background-color: black;
+  }
+
+  textarea{
+    width: 100%;
+    // background-color: goldenrod;
+  }
+
+textarea:focus{
+     border-color: goldenrod;
+ 
+}
+
+  table{
+    font-size:smaller;
+  }
+
+
+  .carousel-control-next-icon,.carousel-control-prev-icon {
+    background-color:black
+  }
+
+  .carousel-indicators [data-bs-target]{
+    background-color: black!important;
+     border-radius: 100%;
+     width: 15px!important;
+     height:15px!important;
+
+  }
+
+
+  .fa-trash-o{
+    color: red!important;
+  }
+
+
+ 
+
+ 

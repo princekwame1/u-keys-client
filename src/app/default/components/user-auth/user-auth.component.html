@@ -1,0 +1,251 @@
+<div class=" user-section animate__animated animate__fadeIn">
+    <div class="container  py-3">
+      <div class="row mb-4">
+        <div class="col-lg-5 mx-auto">
+          <h5 class="display-5 font font-weight-light text-center text-muted">Our team</h5>
+          <p class="font-italic text-muted text-center">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        </div>
+      </div>
+      <div class="col-lg-12 col-sm-12 col-md-12">
+      
+
+        <div class="row">
+            <div class="col-12">
+              <div class="card mb-4">
+                <div class="card-header pb-0">
+                  <div class="row ">
+                    <div class="col-md-4">
+                      <i class="fa fa-align-justify float-start px-1"></i>
+        
+                    </div>
+                    <div class="col-md-4 mx-auto text-center "> User Profile
+                    </div>
+                    <div class="col-md-4">
+                      <a data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        <i class="fa fa-plus float-end"></i>
+                      </a>
+        
+                    </div>
+                  </div>
+                </div>
+                <div class="card-body px-0 pt-0 pb-2">
+                  <div class="table-responsive p-0">
+                    <table class="table align-items-center mb-0">
+                      <thead>
+                        <tr>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Users</th>
+                          <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Function</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Status</th>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Employed</th>
+                          <th class="text-secondary opacity-7"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let user of UserList">
+                          <td>
+                            <div class="d-flex px-2 py-1">
+                              <div>
+                                <img src="{{user.image}}" class="avatar avatar-sm me-3" alt="user1">
+                              </div>
+                              <div class="d-flex flex-column justify-content-center">
+                                <h6 class="mb-0 text-sm">{{user.username}}</h6>
+                                <p class="text-xs text-secondary mb-0">{{user.email}}</p>
+                              </div>
+                            </div>
+                          </td>
+                          <td>
+                            <p class="text-xs font-weight-bold mb-0">{{user.position}}</p>
+                            <p class="text-xs text-secondary mb-0">Organization</p>
+                          </td>
+                          <td class="align-middle text-center text-sm">
+                            <span class="badge badge-sm bg-gradient-success">Online</span>
+                          </td>
+                          <td class="align-middle text-center">
+                            <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+                          </td>
+                          <td class="align-middle">
+                            <ul>
+                              <li class=""data-bs-toggle="modal" data-bs-target="#editUser" (click)='getUserbyid(user.id)'><i class="fa fa-edit"></i></li>
+                              <li (click)='deleteUser(user.id)'><i class="fa fa-trash" ></i></li>
+                              </ul>
+                          </td>
+                        </tr>
+                    
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  
+  
+  
+  </div>  
+  <div class="AddTeam">
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)='clearform()'></button>
+            </div>
+            <div class="modal-body">
+              <form action="" enctype="multipart/form-data" method="post" [formGroup]="userForm" (ngSubmit)='SubmitUserInfo()'>
+                <div class="card-body">
+                  <div class="form-group form-group-sm text-center">
+                    <div class="imgPreview  mb-4">
+                      <img [src]="imageData " class="avatar"  >
+  
+                    </div>
+  
+                  </div>
+                  <div class="form-group form-group-sm text-center">
+                    <input type="file" class="file-upload"  (change)='onFileSelect($event)' #fileUpload >
+  
+                  </div>
+                </div>
+                <div class="card-body">
+  
+                  <div class="form-group form-group-sm row my-2">
+                    <label class="col-md-3 col-form-label" for="text-input">Name</label>
+                    <div class="col-md-9">
+                      <input type="text" formControlName='username' class="form-control form-control-sm"
+                        placeholder="Please enter your name" required>
+                    </div>
+                  </div>
+                  <div class="form-group form-group-sm row my-2">
+                    <label class="col-md-3 col-form-label" for="text-input">Email</label>
+                    <div class="col-md-9">
+                      <input type="text" formControlName='email' class="form-control form-control-sm"
+                        placeholder="Please enter your position" required>
+                    </div>
+                  </div>
+                  <div class="form-group form-group-sm row my-2">
+                    <label class="col-md-3 col-form-label" for="text-input">Position</label>
+                    <div class="col-md-9">
+                      <input type="text" formControlName='position' class="form-control form-control-sm"
+                        placeholder="Please enter your position" required>
+                    </div>
+                  </div>
+                  <div class="form-group form-group-sm row my-2">
+                    <label class="col-md-3 col-form-label" for="text-input">Contact</label>
+                    <div class="col-md-9">
+                      <input type="text" formControlName='phone' class="form-control form-control-sm"
+                        placeholder="Please enter your position" required>
+                    </div>
+                  </div>
+                  <div class="form-group form-group-sm row my-2">
+                    <label class="col-md-3 col-form-label" for="text-input">Password</label>
+                    <div class="col-md-9">
+                      <input type="password" formControlName='password' class="form-control form-control-sm"
+                        placeholder="Please enter your position" required>
+                        
+                    </div>
+                  </div>
+                  <div class="form-group form-group-sm row my-2">
+                    <label class="col-md-3 col-form-label" for="text-input">Confirm Password</label>
+                    <div class="col-md-9">
+                      <input type="password" formControlName='cpassword' class="form-control form-control-sm"
+                        placeholder="Please enter your position" required>
+                    </div>
+                  </div>
+  
+                  <div class="form-group form-group-sm text-center">
+                    <button type="button" class="btn btn-secondary mx-2" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal" aria-label="Close">Save changes</button>
+                  </div>
+                </div>
+  
+              </form>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+  
+    </div>
+  
+  
+    <!-- Edit User -->
+    <div class="modal fade" id="editUser" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit User</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)='clearform()'></button>
+          </div>
+          <div class="modal-body">
+            <form action="" enctype="multipart/form-data" method="post" [formGroup]="EditUserForm" (ngSubmit)='UpdateUser()'>
+              <div class="card-body">
+                <div class="form-group form-group-sm text-center">
+                  <div class="imgPreview  mb-4">
+                    <img [src]="imageData " class="avatar"  >
+  
+                  </div>
+  
+                </div>
+                <div class="form-group form-group-sm text-center">
+                  <input type="file" class="file-upload"  (change)='onFileSelect($event)' #fileUpload >
+  
+                </div>
+              </div>
+              <div class="card-body">
+  
+                <div class="form-group form-group-sm row my-2">
+                  <label class="col-md-3 col-form-label" for="text-input">Name</label>
+                  <div class="col-md-9">
+                    <input type="text" formControlName='username' class="form-control form-control-sm"
+                      placeholder="Please enter your name" required>
+                  </div>
+                </div>
+                <div class="form-group form-group-sm row my-2">
+                  <label class="col-md-3 col-form-label" for="text-input">Email</label>
+                  <div class="col-md-9">
+                    <input type="text" formControlName='email' class="form-control form-control-sm"
+                      placeholder="Please enter your position" required>
+                  </div>
+                </div>
+                <div class="form-group form-group-sm row my-2">
+                  <label class="col-md-3 col-form-label" for="text-input">Position</label>
+                  <div class="col-md-9">
+                    <input type="text" formControlName='position' class="form-control form-control-sm"
+                      placeholder="Please enter your position" required>
+                  </div>
+                </div>
+                <div class="form-group form-group-sm row my-2">
+                  <label class="col-md-3 col-form-label" for="text-input">Contact</label>
+                  <div class="col-md-9">
+                    <input type="text" formControlName='phone' class="form-control form-control-sm"
+                      placeholder="Please enter your position" required>
+                  </div>
+                </div>
+                <!-- <div class="form-group form-group-sm row my-2">
+                  <label class="col-md-3 col-form-label" for="text-input">Password</label>
+                  <div class="col-md-9">
+                    <input type="password" formControlName='password' class="form-control form-control-sm"
+                      placeholder="Please enter your position" required>
+                  </div>
+                </div>
+                <div class="form-group form-group-sm row my-2">
+                  <label class="col-md-3 col-form-label" for="text-input">Confirm Password</label>
+                  <div class="col-md-9">
+                    <input type="password" formControlName='cpassword' class="form-control form-control-sm"
+                      placeholder="Please enter your position" required>
+                  </div>
+                </div> -->
+  
+                <div class="form-group form-group-sm text-center">
+                  <button type="button" class="btn btn-secondary mx-2" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Save changes</button>
+                </div>
+              </div>
+  
+            </form>
+          </div>
+         
+        </div>
+      </div>
+    </div>

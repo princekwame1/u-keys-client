@@ -1,0 +1,40 @@
+.invalid{
+    color:red;
+    font-size: smaller;
+
+}
+
+.row-height{
+    height: 400px;
+     padding: 10px 10px;
+     font-size: smaller;
+}
+
+.table-height{
+    height: 240px;
+}
+    .card{
+        width: 100%!important;
+        margin: 0!important;
+        padding: 0!important;
+    }
+
+    .fa-trash-o{
+        color: red;
+    }
+
+    .tableData{
+        overflow-x: scroll;
+          font-size: smaller ;
+    }
+
+    @media (max-width: 768px) {
+        .row-height{
+            height: unset;
+           
+        }
+        
+        .table-height{
+            height: unset;
+        } 
+    }

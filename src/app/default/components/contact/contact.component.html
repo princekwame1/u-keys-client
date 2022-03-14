@@ -1,0 +1,185 @@
+<div class="animate__animated animate__fadeIn">
+    <div class="card ">
+        <div class="card-header">
+          <i class="fa fa-align-justify float-start py-1 px-2"  ></i>
+          <div class="action">
+            <i *ngIf="!contactList" class="fa fa-plus float-end px-2" data-bs-toggle="modal" data-bs-target="#AddPartner"></i>
+            <i *ngIf="contactList"class="fa fa-edit float-end px-2" data-bs-toggle="modal" data-bs-target="#EditPartner" (click)=" getContactbyid(contactList[0].id)"></i>
+    
+          </div>
+        </div>
+        <div class="card-body">
+        <div class="row">
+      
+    <div class="card-group ">
+      
+            
+              <div class="row mt-2">
+        
+                <div class="col-md-6 d-flex align-items-stretch">
+                  <div class="info-box">
+                    <i class="bx fa fa-map-marker"></i>
+                    <h3>My Address</h3>
+                    <p>{{contactList[0].address}}</p>
+                  </div>
+                </div>
+        
+                <div class="col-md-6 mt-4 mt-md-0 d-flex align-items-stretch">
+                    <div class="info-box">
+                        <i class="bx fa fa-envelope"></i>
+                        <h3>Email Me</h3>
+                        <p>{{contactList[0].email}}</p>
+                      </div>
+                </div>
+        
+                <div class="col-md-6 mt-4 d-flex align-items-stretch">
+                  <div class="info-box">
+                    <i class="bx fa fa-phone"></i>
+                    <h3>Call Me</h3>
+                    <p style="color: white;">+233 {{contactList[0].phone}}</p>
+                  </div>
+                </div>
+    
+                <div class="col-md-6 mt-4 d-flex align-items-stretch">
+                    <div class="info-box">
+                      <!-- <i class="bx fa fa-envelope"></i>
+                      <h3>Email Me</h3>
+                      <p>princekwame716@gmail.com</p> -->
+                    </div>
+                  </div>      
+              </div>
+        
+                
+            
+        
+          
+    
+    </div>
+    </div>
+      </div>
+    </div>
+    
+    </div>
+    
+    
+    
+    
+    <!-- Add Contact -->
+    <div class="modal fade" id="AddPartner" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Add Contact Information</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" class="form-horizontal bg-light " [formGroup]='Form'
+                (ngSubmit)='SubmitContact()'>
+            
+      
+                <div class="form-group row my-2">
+                  <label class="col-md-3 col-form-label" for="text-input">Address</label>
+                  <div class="col-md-9">
+                    <!-- <div *ngIf='!Address.valid && (Address.touched || Address.dirty) '
+                      class=" invalid animate__animated animate__fadeIn">*Address is required</div>
+       -->
+                    <input type="text" id="text-input" formControlName="address" class="form-control form-control-sm"
+                      placeholder=""
+        >
+                  </div>
+                </div>
+      
+                <div class="form-group row my-2">
+                    <label class="col-md-3 col-form-label" for="text-input">Email</label>
+                    <div class="col-md-9">
+                      <!-- <div *ngIf='!Email.valid && (Email.touched || Email.dirty) ' class="animate__animated animate__fadeIn invalid" >
+    
+                        <div *ngIf='Email.errors?.email'>Please enter a valid email</div> 
+                        <div *ngIf='Email.errors?.required'>Email required</div>
+                         
+                
+                       
+                       </div> -->
+    
+                      <input type="text" id="text-input" formControlName="email" class="form-control form-control-sm"
+                        placeholder="Please enter your email"
+                     >
+                    </div>
+                  </div>
+    
+                  <div class="form-group row my-2">
+                    <label class="col-md-3 col-form-label" for="text-input">Phone</label>
+                    <div class="col-md-9">
+                      <!-- <div *ngIf='!Phone.valid && (Phone.touched || Phone.dirty) '
+                        class=" invalid animate__animated animate__fadeIn ">*Phone number is required</div> -->
+        
+                      <input type="text" id="text-input" formControlName="phone" class="form-control form-control-sm"
+                        placeholder=""
+                    >
+                    </div>
+                  </div>
+                <input type="submit" value="Submit " class="btn-primary rounded float-end"
+                data-bs-dismiss="modal" aria-label="Close">
+              </form>
+            </div>
+           
+          </div>
+        </div>
+      </div>
+    
+    <!-- Edit Contact -->
+      <div class="modal fade" id="EditPartner" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Update Contact Information</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post" class="form-horizontal bg-light " [formGroup]='EditForm'
+                (ngSubmit)='UpdateContact()'>
+            
+      
+                <div class="form-group row my-2">
+                  <label class="col-md-3 col-form-label" for="text-input">Address</label>
+                  <div class="col-md-9">
+                    <!-- <div *ngIf='!Address1.valid && (Address1.touched || Address1.dirty) '
+                      class=" invalid animate__animated animate__fadeIn">*Address is required</div>
+       -->
+                    <input type="text" id="text-input" formControlName="address" class="form-control form-control-sm"
+                      placeholder=""
+     >
+                  </div>
+                </div>
+      
+                <div class="form-group row my-2">
+                    <label class="col-md-3 col-form-label" for="text-input">Email</label>
+                    <div class="col-md-9">
+                      <!-- <div *ngIf='!Email1.valid && (Email1.touched || Email1.dirty) '
+                        class=" invalid animate__animated animate__fadeIn ">*Email is required</div>
+         -->
+                      <input type="text" id="text-input" formControlName="email" class="form-control form-control-sm"
+                        placeholder="Please enter your email"
+                      >
+                    </div>
+                  </div>
+    
+                  <div class="form-group row my-2">
+                    <label class="col-md-3 col-form-label" for="text-input">Phone</label>
+                    <div class="col-md-9">
+                      <!-- <div *ngIf='!Phone1.valid && (Phone1.touched || Phone1.dirty) '
+                        class=" invalid animate__animated animate__fadeIn ">*Phone number is required</div>
+         -->
+                      <input type="text" id="text-input" formControlName="phone" class="form-control form-control-sm"
+                        placeholder=""
+                       >
+                    </div>
+                  </div>
+                <input type="submit" value="Submit " class="btn-primary rounded float-end"
+                data-bs-dismiss="modal" aria-label="Close">
+              </form>
+            </div>
+           
+          </div>
+        </div>
+      </div>
