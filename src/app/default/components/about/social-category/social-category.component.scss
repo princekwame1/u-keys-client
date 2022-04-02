@@ -1,0 +1,109 @@
+// .bg{
+//   background-image:url(../../../../../assets/images/texture-g1d4d647a6_1920.jpg);
+// }
+
+// .glass{
+//   background-color: #ffffff10;
+//   backdrop-filter: blur(12px);
+//   -webkit-backdrop-filter: blur(12px);
+// }
+.tableHeight{
+    height: 200px;
+  
+  }
+  
+  
+  textarea{
+      width: 100%;
+  }
+  label{
+    font-size: 14px;
+    font-family: 'Comfortaa', cursive;
+  }
+  .Add{
+    background-color: rgb(218, 165, 32,0.7);
+    color: whitesmoke;
+    font-size: 12px;
+    outline: none;
+    border: none;
+  }
+  
+  .card{
+      background-color: whitesmoke;
+  
+  }
+  .partner-title h3{
+      font-family: 'Comfortaa', cursive;
+  font-size: 20px;
+      text-align: center;
+  }
+  
+  H3{
+    font-size: small;
+  }
+  
+  .label h3{
+    font-family: 'Comfortaa', cursive;
+  font-size: 20px;
+    text-align: center;
+  }
+  
+  .fa-trash-o{
+  
+    color: red;
+  }
+  
+  
+  
+  .categoryInfo p{
+    color: black;
+  }
+  .categoryInfo{
+  font-size: smaller;
+  }
+  
+  
+   h4 {
+      font-size: 15px;
+      color: white;
+      margin-bottom: 20px;
+  }
+  thead{
+    font-size: 13px;
+  }
+  
+  tbody{
+    font-size: 12px;
+  }
+  
+          .invalid{
+            margin-left: 10px;
+            font-size: 11px;
+            color:red;
+            
+           
+        }
+  
+  .social{
+   width: 100%;
+   height: fit-content;
+  
+  }
+  
+  .card{
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  
+  @media (max-width: 768px) {
+    .tableHeight{
+      height: unset !important;
+    }
+  
+    .social{
+      background-size: cover;
+   
+  }
+  
+  }

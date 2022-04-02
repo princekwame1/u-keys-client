@@ -1,0 +1,197 @@
+.imgPreview{
+    position: relative;
+    width: 100%;
+    // margin-left: 10%;
+    height: 250px;
+    background-color: gray;
+  }
+  
+  .Preview{
+    position: relative;
+    width: 100%;
+    // margin-left: 10%;
+    height: 250px;
+    // background-color: gray;
+  }
+  
+
+  .fa-trash-o{
+    color:red
+  }
+  .invalid{
+    margin-left: 10px;
+    font-size: 11px;
+    color:red;
+    
+   
+}
+  .image{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+  }
+
+
+.carousel-item{
+    width: 100%;
+    height: 370px;
+    background-color: black;
+  }
+
+  .card{
+      margin: 0;
+      padding: 0;
+  }
+
+  .label h3{
+    font-family: 'Comfortaa', cursive;
+   
+   
+  font-size: 20px;
+    text-align: center;
+  }
+
+  .tableData{
+    overflow-x: scroll;
+      font-size: smaller ;
+}
+
+.img-gallery{
+  width: 100%;
+  margin: 30px auto 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(190px,1fr));
+  grid-gap:20px 10px;
+}
+
+.img-gallery img{
+  width: 98%;
+  height: 200px;
+  cursor:pointer;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  transition: all .4s ease
+}
+
+
+.img-gallery video{
+  width: 98%;
+  height: 200px;
+  cursor:pointer;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  transition: all .4s ease
+}
+.img-gallery img:hover{
+  transform: scale(1.07);
+  -ms-transform: scale(1.07);
+  -webkit-transform: scale(1.07);
+  box-shadow : 0 32px 75px rgba(68,77,136,0.3);
+}
+
+
+
+
+.full-img{
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,.9);
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  // margin-top:90px;
+z-index: 100;
+
+}
+
+
+.full-img img{
+  width: 90%;
+  max-width: 500px;
+  -webkit-transition: all .4s ease;
+  -moz-transition: all .4s ease;
+  -o-transition: all .4s ease;
+  -ms-transition: all .4s ease;
+  transition: all .4s ease
+}
+
+.full-img span{
+  position: absolute;
+  top: 5%;
+  font-size: 28px;
+  color: white;
+  right: 5%;
+  cursor: pointer;
+}
+
+.Row{
+  background-color: rgb(245, 222, 179,.4);
+}
+
+.Rows{
+  background-color: rgb(255, 215, 0,0.2);
+}
+
+
+
+
+@media (max-width: 480px) {
+  .img-gallery img{
+      width: 99%;
+      height: unset;
+  }    
+}
+
+
+
+@import "~swiper/css";
+@import "~swiper/css/effect-coverflow";
+@import "~swiper/css/pagination";
+.swiper {
+  width: 100%;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.swiper-slide {
+  background-position: center;
+  background-size: cover;
+  width: 300px;
+  height: 300px;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: inherit;
+}
+
+.card{
+  border: none;
+}
+
+.form-control, .dataTable-input .form-select {
+  display: block;
+  width: 100%;
+  padding: 0.875rem 1.125rem;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1;
+  color: #69707a;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #c5ccd6;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0.35rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+

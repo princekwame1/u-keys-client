@@ -4,6 +4,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { About } from 'src/app/default/interface/about';
 import { AboutService } from 'src/app/default/shared/about.service';
 import Swal from 'sweetalert2';
+declare var $: any;
 
 @Component({
   selector: 'app-main',
@@ -56,6 +57,7 @@ modules={};
 onFileSelected(event:any) {
 
   const file = event.target.files[0];
+  this.AboutForm.patchValue({ image: file });
   this.EditAboutForm.patchValue({ image: file });
   const allowedMimeTypes = ["image/png", "image/jpeg", "image/jpg"];
   if (file && allowedMimeTypes.includes(file.type)) {
@@ -72,15 +74,16 @@ onFileSelected(event:any) {
 
 
 
-// onSubmit(){
-//   this.Aboutservice.PostAbout(this.AboutForm.value.description, this.AboutForm.value.image)
-//   .subscribe(data=>{
-//        this.getAbout();
-//   this.AboutForm.reset();
-//   $('.file-upload').val('');
-//   // this.imageData = '';
-//   })
-//  }
+onSubmit(){
+  this.Aboutservice.PostAbout(this.AboutForm.value.description, this.AboutForm.value.image)
+  .subscribe(data=>{
+    console.log(data)
+       this.getAbout();
+  this.AboutForm.reset();
+  $('.file-upload').val('');
+  this.imageData = '';
+  })
+ }
 
 
 
@@ -88,6 +91,7 @@ getAbout(){
  return this.Aboutservice.getAbout()
  .subscribe(data=>{
    this.AboutList=data;
+   console.log(this.AboutList)
  })
 
 }
@@ -117,6 +121,8 @@ updateAbout(){
     this.Aboutservice.updateAbout(this.EditAboutForm.value.id,this.EditAboutForm.value)
     .subscribe(data=>{
       this.getAbout();
+      $('.file-upload').val('');
+this.imageData='';
     })
  
   

@@ -1,1 +1,139 @@
-<p>home-gallery works!</p>
+<div class="animate__animated animate__fadeIn card">
+    <div class="card-header">
+      <div class="row ">
+        <div class="col-4">
+          <i class="fa fa-align-justify float-start "></i>
+        </div>
+        <div class="col-4">
+          <div class="text-center">
+        Memories
+      </div>
+        </div>
+        <div class="col-4">
+             <a data-bs-toggle="modal" data-bs-target="#AddMemory">
+        <i class="fa fa-plus float-end mx-2"></i>
+      </a>
+        </div>
+  
+      </div>
+    
+    </div>
+    
+      <div class="card-body row-height ">
+        <div class="row">
+             <div class="table-height p-2">
+              
+     <table class="table table-light table-striped  table-hover rounded shadow">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Description</th>
+              <th>Action</th>
+    
+            </tr>
+    
+          </thead>
+          <tbody>
+            <tr *ngFor='let gallery of GalleryList | paginate: { itemsPerPage: 5, currentPage: p }'>
+              <td>
+                <img src="{{gallery.image}}" alt="" style="width: 50px;height: 50px;" >
+              </td>
+              <td>{{gallery.description}}</td>
+              <td>
+                <span class="fa fa-edit mx-2" data-bs-toggle="modal" data-bs-target="#EditGalleryForm"
+         (click)='getGallerybyid(gallery.id)' ></span>
+              <span><i class="fa fa-trash-o" (click)='deleteGallery(gallery.id)'></i></span>
+            </td>
+    
+            </tr>
+         
+          </tbody>
+        </table>    
+          
+       
+        </div>
+        <div class="row py-2">
+          <pagination-controls class=" text-center" (pageChange)="p = $event"></pagination-controls>
+        </div>
+        </div>
+     
+      </div>
+      
+    </div>
+     
+    <!-- Add Memory -->
+  
+  <div class="modal fade 	" id="AddMemory" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Post a memory</h5>
+        <button type="button" class="btn-close" (click)='clearform()'data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+         <form action="" method="post" [formGroup]="Form" (ngSubmit)='SubmitInfo()'> 
+          <div class="imgPreview mb-2">
+            <img [src]="imageData" alt="" class="image">
+          </div>
+           <div class="form-group form-group-sm my-2">
+           <input type="file" class="file-upload"  (change)='onFileSelect($event)' #fileUpload >
+   
+         </div> 
+   
+         <div class="form-group row my-2">
+           <div class="col-md-12">
+  
+          <textarea name="" formControlName="description" class="px-3" rows="4" placeholder="Description......" ></textarea>
+           </div>
+         </div>
+       <button type="submit" style="color: goldenrod;" class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
+        <div class="spinner-border spinner-border-sm text-warning mr-2" *ngIf="loading"><span class="sr-only">loading...</span></div><span style="color: goldenrod;">Submit</span> 
+  
+        </button>
+        </form> 
+      </div>
+  
+    </div>
+  </div>
+  </div>
+  
+  
+  <!-- Edit Memory -->
+    <div class="modal fade 	" id="EditGalleryForm" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true"> 
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Memory</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"(click)='clearform()'></button>
+        </div>
+        <div class="modal-body">
+          <form action="" method="post" class="form-horizontal bg-light " [formGroup]='EditForm' (ngSubmit)='UpdateGallery()'>
+  
+          <div class="imgPreview">
+            <img [src]="imageData" alt="" class="image">
+          </div>
+  
+            <div class="form-group row my-3">
+           <input type="file" name=""class="file-upload"  (change)='onFileSelect($event)'>
+            </div>
+  
+            <div class="form-group row my-2">
+              <div class="col-md-12">
+  
+                <textarea  id="text-input" formControlName="description" class="form-control form-control-sm"
+                  placeholder=""></textarea>
+              </div>
+            </div>
+            <button type="submit"  class="btn  btn-dark float-end"
+              [disabled]="EditForm.invalid" style="color:goldenrod" data-bs-dismiss="modal" aria-label="Close">
+            
+              <div class="spinner-border spinner-border-sm text-warning mr-2" *ngIf="loading"><span class="sr-only">loading...</span></div><span style="color: goldenrod;">Update</span> 
+            </button>
+          </form>
+        </div>
+  
+      </div>
+    </div>
+  </div> 

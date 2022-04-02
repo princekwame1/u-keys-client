@@ -5,6 +5,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 import Swal from 'sweetalert2';
 import { User } from '../../interface/user';
 import { AuthService } from '../../shared/auth.service';
+declare var $: any;
 
 @Component({
   selector: 'app-user-auth',
@@ -13,16 +14,19 @@ import { AuthService } from '../../shared/auth.service';
 })
 export class UserAuthComponent implements OnInit {
   loading: boolean | undefined;
-  imageData: string | undefined;
+  imageData: string 
   EditUserForm!:FormGroup;
   userForm! :FormGroup
   UserList: any;
 
-  constructor(private sanitizer: DomSanitizer,private authService:AuthService, private fb: FormBuilder,) { }
+  constructor(private sanitizer: DomSanitizer,private authService:AuthService, private fb: FormBuilder,) {
+
+    this.imageData='http://bootdey.com/img/Content/avatar/avatar1.png'
+
+   }
 
   ngOnInit(): void {
     this.getUserList();
-
 
     this.userForm =  this.fb.group({
       username: [null, Validators.required],
@@ -86,10 +90,11 @@ SubmitUserInfo(){
  
  .subscribe(
  Response => {
-  // $('.file-upload').val('');
+   $('.file-upload').val('');
   this.loading=false;
     this.getUserList();
     this.userForm.reset();
+    this.imageData='http://bootdey.com/img/Content/avatar/avatar1.png'
    }
  ,error => {
     if (error instanceof HttpErrorResponse) {
@@ -107,6 +112,7 @@ getUserList(){
   return this.authService.getUserInfo()
   .subscribe(data=>{
     this.UserList=data;
+    console.log(this.UserList)
   })
 }
 
@@ -160,7 +166,7 @@ this.EditUserForm.patchValue({
 }
 
 clearform(){
-  this.imageData="";
+  this.imageData='http://bootdey.com/img/Content/avatar/avatar1.png'
   this.EditUserForm.reset();
   this.userForm.reset();
   // $('.file-upload').val('');
@@ -181,7 +187,7 @@ UpdateUser(){
   this.authService.updateUser(this.EditUserForm.value.id,this.EditUserForm.value).subscribe(data=>{
   //  console.log(data)
     this.EditUserForm.reset()
-    this.imageData='';
+    this.imageData='http://bootdey.com/img/Content/avatar/avatar1.png'
       this.getUserList();
    })
  

@@ -6,6 +6,13 @@ import { HomeServiceService } from 'src/app/default/shared/home-service.service'
 import Swal from 'sweetalert2';
 // import Swal from 'sweetalert2';
 declare var $: any;
+import { SwiperComponent } from "swiper/angular";
+
+// import Swiper core and required modules
+import SwiperCore, {EffectFade, Autoplay, Pagination, Navigation, } from "swiper";
+
+// install Swiper modules
+SwiperCore.use([EffectFade,Autoplay, Pagination, Navigation,]);
 
 @Component({
   selector: 'app-carousel',
@@ -28,7 +35,9 @@ export class CarouselComponent implements OnInit {
       this.Form = this.fb.group({
         image:[null,Validators.required],
         description: ['',Validators.required],
-    
+        description2: ['',Validators.required],
+        description3: ['',Validators.required],
+
         });
   
   
@@ -36,7 +45,9 @@ export class CarouselComponent implements OnInit {
           id:[''],
           image:[null,Validators.required],
           description: ['',Validators.required],
-      
+          description2: ['',Validators.required],
+          description3: ['',Validators.required],
+
           });
     }
     onFileSelect(event:any) {
@@ -63,7 +74,6 @@ export class CarouselComponent implements OnInit {
     //  console.log(CarouselInfo)
     return this.homeService.PostCarousel(this.Form.value).subscribe(
      Response => {
-       console.log(Response)
        this.loading=false;
        this.getCarouselList();
        this.Form.reset();
@@ -95,7 +105,9 @@ export class CarouselComponent implements OnInit {
   this.EditForm.patchValue({
     id:carousel.id,
     description:carousel.description,
-  
+    description2:carousel.description2,
+    description3:carousel.description3,
+
   })
   }
   

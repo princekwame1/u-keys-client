@@ -10,99 +10,118 @@ import { ContactService } from '../../shared/contact.service';
 })
 export class ContactComponent implements OnInit {
 
-  Form!:FormGroup;
-  EditForm!:FormGroup;
+  EditAddressForm!:FormGroup;
+ AddressForm!:FormGroup;
   contactList: any;
-  constructor(private fb:FormBuilder, private Contactservice:ContactService) { }
+  LocationList: any;
+  EmailList: any;
+  PhoneList: any;
+  EmailForm!: FormGroup;
+  EditEmailForm!: FormGroup;
+  PhoneForm!: FormGroup;
+  EditPhoneForm!: FormGroup;
+  activeAddress:boolean=false;
+  activeEmail:boolean=false;
+  activePhone:boolean=false;
+EditAddress:boolean=false;
+EditEmail:boolean=false;
+EditPhone:boolean=false;
+  constructor(private fb:FormBuilder, private Contactservice:ContactService) {
+  
+   }
 
   ngOnInit(): void {
-    this.GetContact();
+    this.GetAddress();
+    this.GetEmail();
+    this.GetPhone();
 
-    this.Form=this.fb.group({
+
+    this.AddressForm=this.fb.group({
       address:['',Validators.required],
-      email:['',[Validators.email, Validators.required]],
-      phone:['',Validators.required]
+    
     })
 
-    this.EditForm=this.fb.group({
+    this.EditAddressForm=this.fb.group({
       id:[],
       address:['',Validators.required],
+   
+    })
+
+    this.EmailForm=this.fb.group({
+      email:['',[Validators.email, Validators.required]],
+  
+    })
+
+    this.EditEmailForm=this.fb.group({
+      id:[],
       email:['',Validators.required],
+    })
+
+    
+    this.PhoneForm=this.fb.group({
+ 
       phone:['',Validators.required]
     })
 
+    this.EditPhoneForm=this.fb.group({
+      id:[],
+ 
+      phone:['',Validators.required]
+    })
   }
-// FormCOntrolName
-// get Address(){
-//   return this.Form.controls.address
-// } ;
-
-// get Email(){
-//   return this.Form.controls.email
-// } ;
-// get Phone(){
-//   return this.Form.controls.phone
-// } ;
-// get Address1(){
-//   return this.EditForm.controls.address
-// } ;
-
-// get Email1(){
-//   return this.EditForm.controls.email
-// } ;
-// get Phone1(){
-//   return this.EditForm.controls.phone
-// } ;
 
 
-  // Social Media Category Section
+  // Address Section
 
-  GetContact(){
-    return this.Contactservice.getContact()
+  GetAddress(){
+    return this.Contactservice.getAddress()
     .subscribe(data=>{
-      this.contactList=data;
+      this.LocationList=data;
     })
   }
   
-  getContactbyid(id:number){
-    this.Contactservice.getContactbyID(id)
+  getAddressbyid(id:number){
+    this.Contactservice.getAddressbyID(id)
     .subscribe(data=>{
-  this.editContact(data)
+  this.editAddress(data)
     })
   }
   
-  editContact(contact:any){
-  this.EditForm.patchValue({
+  editAddress(contact:any){
+  this.EditAddressForm.patchValue({
     id:contact.id,
     address:contact.address,
-    email:contact.email,
-    phone:contact.phone
+   
   })
   }
   
+
+  // check(array: any[]){
+  //   if(array.length>1){
+  //     this.limitAddress=true;
+  //   }
+  // }
   
-  SubmitContact(){
-   this.Contactservice.PostContact(this.Form.value)
+  SubmitAddress(){ 
+     console.log(this.AddressForm.value)
+   this.Contactservice.PostAddress(this.AddressForm.value)
+ 
     .subscribe(data=>{
-      this.GetContact();
-     this.Form.reset()
+      this.GetAddress();
+     this.AddressForm.reset()
     })
   }
   
-  UpdateContact(){
-  //  const UpdatedData={
-  //   address:this.EditForm.controls.address.value,
-  //     email:this.EditForm.controls.email.value,
-  //     phone:this.EditForm.controls.phone.value
-  //   }
-   this.Contactservice.UpdateContact(this.EditForm.value.id,this.EditForm.value).subscribe(data=>{
-       this.GetContact();
+  UpdateAddress(){
+  
+   this.Contactservice.UpdateAddress(this.EditAddressForm.value.id,this.EditAddressForm.value).subscribe(data=>{
+       this.GetAddress();
    
     })
   
   }
   
-  deleteContact(id:number){
+  deleteAddress(id:number){
   Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -114,9 +133,9 @@ export class ContactComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
            
-    this.Contactservice.deleteContact(id)
+    this.Contactservice.deleteAddress(id)
     .subscribe(data=>{
-      this.GetContact();
+      this.GetAddress();
     })
         Swal.fire(
           'Deleted!',
@@ -128,7 +147,182 @@ export class ContactComponent implements OnInit {
     })
    
   }
-    //End Social Media Category Section
   
    
+
+  
+  // Email Section
+
+  GetEmail(){
+    return this.Contactservice.getEmail()
+    .subscribe(data=>{
+      this.EmailList=data;
+      console.log( this.EmailList)
+    })
+  }
+  
+  getEmailbyid(id:number){
+    this.Contactservice.getEmailbyID(id)
+    .subscribe(data=>{
+  this.editEmail(data)
+    })
+  }
+  
+  editEmail(contact:any){
+  this.EditEmailForm.patchValue({
+    id:contact.id,
+    email:contact.email,
+   
+  })
+  }
+  
+  
+  SubmitEmail(){
+   this.Contactservice.PostEmail(this.EmailForm.value)
+    .subscribe(data=>{
+      this.GetEmail();
+     this.EmailForm.reset()
+    })
+  }
+  
+  UpdateEmail(){
+  
+   this.Contactservice.UpdateEmail(this.EditEmailForm.value.id,this.EditEmailForm.value).subscribe(data=>{
+       this.GetEmail();
+   
+    })
+  
+  }
+  
+  deleteEmail(id:number){
+  Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+           
+    this.Contactservice.deleteEmail(id)
+    .subscribe(data=>{
+      this.GetEmail();
+    })
+        Swal.fire(
+          'Deleted!',
+          'Your file has been deleted.',
+          'success',
+          
+        )
+      }
+    })
+   
+  }
+  
+
+
+
+    // Phone Section
+
+    GetPhone(){
+      return this.Contactservice.getPhone()
+      .subscribe(data=>{
+        this.PhoneList=data;
+        console.log( this.PhoneList)
+
+      })
+    }
+    
+    getPhonebyid(id:number){
+      this.Contactservice.getPhonebyID(id)
+      .subscribe(data=>{
+    this.editPhone(data)
+      })
+    }
+    
+    editPhone(contact:any){
+    this.EditPhoneForm.patchValue({
+      id:contact.id,
+      phone:contact.phone,
+     
+    })
+    }
+    
+    
+    SubmitPhone(){
+     this.Contactservice.PostPhone(this.PhoneForm.value)
+      .subscribe(data=>{
+        this.GetPhone();
+       this.PhoneForm.reset()
+      })
+    }
+    
+    UpdatePhone(){
+    
+     this.Contactservice.UpdatePhone(this.EditPhoneForm.value.id,this.EditPhoneForm.value).subscribe(data=>{
+         this.GetPhone();
+     
+      })
+    
+    }
+    
+    deletePhone(id:number){
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+             
+      this.Contactservice.deletePhone(id)
+      .subscribe(data=>{
+        this.GetPhone();
+      })
+          Swal.fire(
+            'Deleted!',
+            'Your file has been deleted.',
+            'success',
+            
+          )
+        }
+      })
+     
+    }
+
+activatephone(){
+this.activePhone=!this.activePhone;
+}
+
+activateEmail(){
+  this.activeEmail=  !this.activeEmail;
+ 
+  }
+  activateAddress(){
+    this.activeAddress=!this.activeAddress;;
+    }
+      
+
+
+    Editactivatephone(id:any){
+      this.EditPhone=!this.EditPhone;
+      this.getPhonebyid(id);
+      }
+      
+      EditactivateEmail(id:any){
+        this.EditEmail=  !this.EditEmail;
+        this.getEmailbyid(id);
+       
+        }
+        EditactivateAddress(id:any){
+          this.EditAddress=!this.EditAddress;
+          this.getAddressbyid(id);
+          }
+            
+
 }

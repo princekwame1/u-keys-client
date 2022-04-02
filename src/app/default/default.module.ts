@@ -18,6 +18,16 @@ import { QuillModule } from 'ngx-quill';
 import { GalleryComponent } from './components/gallery/gallery.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { UserAuthComponent } from './components/user-auth/user-auth.component';
+import { SocialCategoryComponent } from './components/about/social-category/social-category.component';
+import { SocialComponent } from './components/about/social/social.component';
+import { GalleryCategoryComponent } from './components/gallery/gallery-category/gallery-category.component';
+import { AlbumComponent } from './components/gallery/album/album.component';
+import { SwiperModule } from 'swiper/angular';
+import { ProfileComponent } from './components/user-auth/profile/profile.component';
+import { StockComponent } from './components/account/stock/stock.component';
+import { RecordsComponent } from './components/account/records/records.component';
+import { ReportComponent } from './components/account/report/report.component';
+import { ProfileOfCeoComponent } from './components/about/profile-of-ceo/profile-of-ceo.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +44,15 @@ import { UserAuthComponent } from './components/user-auth/user-auth.component';
     GalleryComponent,
     ContactComponent,
     UserAuthComponent,
+    SocialCategoryComponent,
+    SocialComponent,
+    GalleryCategoryComponent,
+    AlbumComponent,
+    ProfileComponent,
+    StockComponent,
+    RecordsComponent,
+    ReportComponent,
+    ProfileOfCeoComponent,
 
  
 
@@ -44,7 +63,8 @@ import { UserAuthComponent } from './components/user-auth/user-auth.component';
     FormsModule,
     ReactiveFormsModule,
     NgxPaginationModule,
-     QuillModule.forRoot()
+     QuillModule.forRoot(),
+     SwiperModule
 
   ]
 })

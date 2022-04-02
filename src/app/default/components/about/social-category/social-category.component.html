@@ -1,0 +1,234 @@
+<div class="Social-categories animate__animated animate__fadeIn">
+    <div class="label  text-secondary">
+      <h3>Create Social Category</h3>
+    </div>
+
+        <div class="row">
+          <div class="col-md-6 col-sm-12">
+            <div class="card bg-light">
+              <div class="card-body categoryInfo">
+                <div class="category-Title text-center text-secondary">
+                  <h5>How to create a Social Media Category</h5>
+
+                </div>
+                <ul>
+                  <li>Click on the addition button in the Social Media Category table. </li>
+                  <li>Enter the Social media icon code. For example :<br>
+                    <div class="col-md-10 col-sm-12">
+                      <table class="table table-primary table-striped  table-hover rounded">
+                        <thead>
+                          <tr>
+                            <th>icons</th>
+                            <th>icon-code</th>
+                          </tr>
+
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td><i class="fa fa-facebook-official" aria-hidden="true"></i></td>
+                            <td>fa fa-facebook-official</td>
+                          </tr>
+                          <tr>
+                            <td><i class="fa fa-telegram" aria-hidden="true"></i></td>
+                            <td>fa fa-telegram</td>
+                          </tr>
+
+                          <tr>
+                            <td><i class="fa fa-linkedin" aria-hidden="true"></i></td>
+                            <td>fa fa-linkedin</td>
+                          </tr>
+
+                          <tr>
+                            <td><i class="fa fa-instagram" aria-hidden="true"></i></td>
+                            <td>fa fa-instagram</td>
+                          </tr>
+
+
+                          <tr>
+                            <td><i class="fa fa-whatsapp" aria-hidden="true"></i></td>
+                            <td>fa fa-whatsapp</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li>
+                  <p>Icons are supported by Font Awesome. Visit their <a href="https://fontawesome.com/">Official
+                      Website</a> for more information</p>
+
+                </ul>
+
+
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 my-3 col-sm-12">
+            <div class="card bg-light">
+              <div class="card-header ">
+                <div class="row">
+                  <div class="col-4 ">
+                    <i class="fa fa-align-justify float-start px-1"></i>
+
+                  </div>
+                  <div class="col-4 text-center ">
+                    <label for="" style="font-size: smaller;">Social Category</label>
+                  </div>
+                  <div class="col-4">
+                    <a data-bs-toggle="modal" data-bs-target="#socialCategoryModal">
+                      <i class="fa fa-plus float-end"></i>
+                    </a>
+                  </div>
+
+                </div>
+
+
+              </div>
+              <div class="card-body">
+                <table class="table table-sm table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th>Icon</th>
+                      <th>Name</th>
+                      <th> Icon Code</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor='let category of Socialcategory | paginate: { itemsPerPage: 5, currentPage: p }'>
+                      <td class="col-2">
+                        <i class="{{category.icon}}" style="color:{{category.color}};"></i>
+                      </td>
+                      <td class="col-3">{{category.name}}</td>
+                      <td class="col-4">{{category.icon}}</td>
+
+
+
+                      <td class="col-2">
+                        <span class="fa fa-edit mx-2" data-bs-toggle="modal" data-bs-target="#EditsocialCategoryModal"
+                          (click)="getCategorybyid(category.id)"></span>
+                        <span><i class="fa fa-trash-o" (click)='deleteCategory(category.id)'></i></span>
+                      </td>
+                    </tr>
+
+                  </tbody>
+                </table>
+                <div class="row">
+                  <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+
+        <!-- Category Post Model -->
+
+  <div class="modal fade 	" id="socialCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Social Media Categories</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post" class="form-horizontal bg-light " [formGroup]='SocialCategoryForm'
+          (ngSubmit)='SubmitCategory()'>
+          <div class="form-group row my-2">
+            <label class="col-md-3 col-form-label" for="text-input"> Icon code</label>
+            <div class="col-md-9">
+              <!-- <div *ngIf='!Icon.valid && (Icon.touched || Icon.dirty) '
+                class=" invalid animate__animated animate__fadeIn ">*Icon Code is required</div> -->
+
+              <input type="text" id="text-input" formControlName="icon" class="form-control form-control-sm"
+                placeholder="Please enter your social media Icon"
+                >
+            </div>
+          </div>
+
+          <div class="form-group row my-2">
+            <label class="col-md-3 col-form-label" for="text-input">name</label>
+            <div class="col-md-9">
+              <!-- <div *ngIf='!Name.valid && (Name.touched || Name.dirty) '
+                class=" invalid animate__animated animate__fadeIn">*Name is required</div> -->
+
+              <input type="text" id="text-input" formControlName="name" class="form-control form-control-sm"
+                placeholder="Please enter your social media url"
+      >
+            </div>
+          </div>
+
+          <div class="form-group row my-2">
+            <label class="col-md-3 col-form-label" for="text-input">Color</label>
+            <div class="col-md-9">
+
+              <input type="text" id="text-input" formControlName="color" class="form-control form-control-sm"
+                placeholder="Please enter icon color . eg : white">
+            </div>
+          </div>
+          <input type="submit" value="Submit " style="color: goldenrod;" class="btn btn-dark rounded float-end"
+            [disabled]="SocialCategoryForm.invalid" data-bs-dismiss="modal" aria-label="Close">
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Category Edit Model -->
+
+<div class="modal fade 	" id="EditsocialCategoryModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true"> 
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Social Media Categories</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="" method="post" class="form-horizontal bg-light " [formGroup]='EditSocialCategoryForm'
+          (ngSubmit)='UpdateCategory()'>
+
+          <div class="form-group row my-2">
+            <label class="col-md-3 col-form-label" for="text-input"> Icon code</label>
+            <div class="col-md-9">
+              <!-- <div *ngIf='!Icon1.valid && (Icon1.touched || Icon1.dirty) '
+                class=" invalid animate__animated animate__fadeIn ">*Icon Code is required</div> -->
+
+              <input type="text" id="text-input" formControlName="icon" class="form-control form-control-sm"
+                placeholder="Please enter your social media Icon"
+            >
+            </div>
+          </div>
+
+          <div class="form-group row my-2">
+            <label class="col-md-3 col-form-label" for="text-input">name</label>
+            <div class="col-md-9">
+              <!-- <div *ngIf='!Name1.valid && (Name1.touched || Name1.dirty) '
+                class=" invalid animate__animated animate__fadeIn">*Name is required</div> -->
+
+              <input type="text" id="text-input" formControlName="name" class="form-control form-control-sm"
+                placeholder="Please enter your social media url"
+               >
+            </div>
+          </div>
+
+          <div class="form-group row my-2">
+            <label class="col-md-3 col-form-label" for="text-input">Color</label>
+            <div class="col-md-9">
+
+              <input type="text" id="text-input" formControlName="color" class="form-control form-control-sm"
+                placeholder="Please enter icon color . eg : white">
+            </div>
+          </div>
+          <input type="submit" value="Update " style="color: goldenrod;" class="btn btn-dark rounded float-end"
+            [disabled]="EditSocialCategoryForm.invalid" data-bs-dismiss="modal" aria-label="Close">
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>

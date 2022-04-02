@@ -1,24 +1,21 @@
 .imgPreview{
     position: relative;
     width: 100%;
-    // margin-left: 10%;
     height: 250px;
     background-color: gray;
   }
   
+.image{
+width: 100%;
+height:250px;
+}
+ 
 
-  .image{
-    width: 100%;
-    height: 100%;
-    text-align: center;
+.images{
+  width: 100%;
+  height:500px;
   }
-
-  .carousel-item{
-    width: 100%;
-    height: 370px;
-    background-color: black;
-  }
-
+ 
   textarea{
     width: 100%;
     // background-color: goldenrod;
@@ -34,18 +31,6 @@ textarea:focus{
   }
 
 
-  .carousel-control-next-icon,.carousel-control-prev-icon {
-    background-color:black
-  }
-
-  .carousel-indicators [data-bs-target]{
-    background-color: black!important;
-     border-radius: 100%;
-     width: 15px!important;
-     height:15px!important;
-
-  }
-
 
   .fa-trash-o{
     color: red!important;
@@ -53,5 +38,68 @@ textarea:focus{
 
 
  
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+// .swiper-slide{
+//   text-align: start!important;
+// }
+.swiper-slide {
+  font-size: 18px;
+  background: #fff;
 
- 
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  // align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active{
+  color: #eee!important;
+  
+ }
+
+ .cover{
+   position: absolute;
+   width: 100%;
+   height: 100%;
+   top: 0;
+   left: 0;
+   background: rgba(0,0,0,0.6);
+   display: flex;
+    align-items: center;
+ }
+
+
+@media screen and (max-width: 480px) {
+  .images{
+    width: 100%;
+    height:250px;
+    }
+    .swiper {
+      width: 100%;
+      height: 300px;
+    }
+}
+
+.card{
+  border: none;
+}

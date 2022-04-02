@@ -1,0 +1,231 @@
+
+<div class="animate__animated animate__fadeIn my-5 pt-3">
+
+    <div class="row">
+        <div class="col-12">
+          <div class="card mb-4">
+            <div class="card-header bg-light py-3">
+                <div class="row">
+                    <div class="col-md-4">
+
+                <i class="fa fa-align-justify float-start px-2"></i>
+
+                    </div>
+                    <div class="col-md-4 text-center">
+Stocks
+                    </div>
+                    <div class="col-md-4">
+                            <a data-bs-toggle="modal" data-bs-target="#stock">
+                  <i class="fa fa-plus float-end"></i>
+                </a>
+            </div>
+                </div>
+               
+      
+            </div>
+            <div class="card-body px-0 pt-0 pb-2">
+              <div class="table-responsive p-0 px-2">
+                <table class="table align-items-center mb-0">
+                  <thead>
+                    <tr>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Item Code</th>
+                      <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Name</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Category</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Brand</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Quantity</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Price (Ghc)</th>
+                      <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let stock of StockList">
+                      <td >
+                         
+                         
+                            <p class="  text-secondary text-sm ">{{stock.id}}</p>
+                        
+                      </td>
+                      <td >
+                        <p class=" text-secondary text-sm">{{stock.name}}</p>
+                      </td>
+                      <td class="text-center text-sm">
+                          <p class="text-center  text-secondary text-sm">{{stock.category.category}}</p>
+                      </td>
+                      <td class=" text-center">
+               <p class="text-center  text-secondary text-sm ">{{stock.brand}}</p>  
+                      </td>
+                      <td class="text-center  ">
+                     <p class="text-center  text-secondary text-sm ">{{stock.quantity}}</p>  
+                      </td>
+
+                      <td class="text-center    ">
+                     <p class="text-center  text-secondary text-sm ">{{stock.price}}</p>   
+                       </td>
+
+                       <td class="text-center text-secondary text-sm  ">
+<span class="fa fa-edit mx-2" data-bs-toggle="modal" data-bs-target="#editstock" (click)="getStockbyid(stock.id)"></span>        
+<span class="fa fa-trash-o" (click)="deleteStock(stock.id)"></span>
+</td>
+                    </tr>
+                    
+                    
+                   
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+
+
+ <!-- Add stock -->
+ <div class="modal fade" id="stock" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Add Stock</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+        </div>
+        <div class="modal-body">
+          <form action="" enctype="multipart/form-data" method="post" [formGroup]="StockForm" (ngSubmit)='SubmitStock()'>
+          
+            <!-- Account details card-->
+          <div class=" my-4">
+               
+                    <!-- Form Group (username)-->
+                    <div class="mb-3">
+                        <label class="small mb-1" for="name">Name </label>
+                        <input class="form-control" id="name" formControlName='name'type="text" placeholder="Enter your item name" >
+                    </div>
+                                   <!-- Form Group (email address)-->
+                                   <div class="mb-3">
+                                    <label class="small mb-1" for="category">Category</label>
+
+                                    <select class="form-select form-control" formControlName='category'
+                                    aria-label=".form-select-sm example">
+                                    <option selected disabled>Open this select menu</option>
+                                    <option [ngValue]="category.id" *ngFor='let category of categoryList'>{{category.category}}</option>
+                          
+                                  </select>                                 </div>
+                    <!-- Form Row        -->
+                    <div class="row gx-3 mb-3">
+                        <!-- Form Group (organization name)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="brand">Brand</label>
+                            <input class="form-control" id="brand" formControlName="brand" type="text" placeholder="Enter your brand name" value="toyota...."  >
+                        </div>
+                        <!-- Form Group (location)-->
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="quantity">Quantity</label>
+                            <input class="form-control" id="quantity" type="text" formControlName="quantity" placeholder="Enter your quantity"  value="" >
+                        </div>
+                    </div>
+ 
+                    <!-- Form Row-->
+                    <div class="row gx-3 mb-3">
+                        <div class="col-md-6">
+                            <label class="small mb-1" for="price">Price</label>
+                            <input class="form-control" formControlName='price' id="inputPhone" type="tel" placeholder="Enter your price" >
+                        </div>
+                       
+                   <div class="text-center">
+                 <button  class="btn btn-light mt-5 w-50"  data-bs-dismiss="modal" aria-label="Close">Save Changes </button>
+
+                   </div>
+
+          
+        </div>
+
+      
+  <!-- Save changes button-->
+
+
+</div>
+
+
+          </form>
+        </div>
+       
+      </div>
+    </div>
+  </div>
+
+
+   <!-- Add stock -->
+ <div class="modal fade" id="editstock" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Stock</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+      </div>
+      <div class="modal-body">
+        <form action="" enctype="multipart/form-data" method="post" [formGroup]="EditStockForm" (ngSubmit)='UpdateStock()'>
+        
+          <!-- Account details card-->
+        <div class=" my-4">
+             
+                  <!-- Form Group (username)-->
+                  <div class="mb-3">
+                      <label class="small mb-1" for="name">Name </label>
+                      <input class="form-control" id="name" formControlName='name'type="text" placeholder="Enter your item name" >
+                  </div>
+                                 <!-- Form Group (email address)-->
+                                 <div class="mb-3">
+                                  <label class="small mb-1" for="category">Category</label>
+
+                                  <select class="form-select form-control" formControlName='category'
+                                  aria-label=".form-select-sm example">
+                                  <option selected disabled>Open this select menu</option>
+                                  <option [ngValue]="stock.category.id" *ngFor='let stock of StockList'>{{stock.category.category}}</option>
+                        </select>
+                             
+                              
+                              
+                              </div>
+                  <!-- Form Row        -->
+                  <div class="row gx-3 mb-3">
+                      <!-- Form Group (organization name)-->
+                      <div class="col-md-6">
+                          <label class="small mb-1" for="brand">Brand</label>
+                          <input class="form-control" id="brand" formControlName="brand" type="text" placeholder="Enter your brand name" value="toyota...."  >
+                      </div>
+                      <!-- Form Group (location)-->
+                      <div class="col-md-6">
+                          <label class="small mb-1" for="quantity">Quantity</label>
+                          <input class="form-control" id="quantity" type="text" formControlName="quantity" placeholder="Enter your quantity"  value="" >
+                      </div>
+                  </div>
+
+                  <!-- Form Row-->
+                  <div class="row gx-3 mb-3">
+                      <div class="col-md-6">
+                          <label class="small mb-1" for="price">Price</label>
+                          <input class="form-control" formControlName='price' id="inputPhone" type="tel" placeholder="Enter your price" >
+                      </div>
+                     
+                 <div class="text-center">
+               <button  class="btn btn-light mt-5 w-50"  data-bs-dismiss="modal" aria-label="Close">Save Changes </button>
+
+                 </div>
+
+        
+      </div>
+
+    
+<!-- Save changes button-->
+
+
+</div>
+
+
+        </form>
+      </div>
+     
+    </div>
+  </div>
+</div>

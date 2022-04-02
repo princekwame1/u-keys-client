@@ -5,27 +5,31 @@ import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
 import { QuillModule } from 'ngx-quill';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { LoginComponent } from './login/login.component';
+import { TokenInterceptorService } from './service/token-interceptor.service';
+import { NotifierModule } from 'angular-notifier';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    NotifierModule,
     FormsModule,
-    QuillModule.forRoot()
+    QuillModule.forRoot(),
 
   ],
   providers: [
     // AuthGuard,
-    // {
-    //  provide:HTTP_INTERCEPTORS,
-    //  useClass:AuthInterceptor,
-    //  multi:true 
-    // }
+    {
+     provide:HTTP_INTERCEPTORS,
+     useClass:TokenInterceptorService,
+     multi:true 
+    }
   ],
   bootstrap: [AppComponent]
 })

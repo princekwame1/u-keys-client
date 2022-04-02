@@ -1,0 +1,262 @@
+<div class="animate__animated animate__fadeIn mb-5" >
+  
+    <div class=" mb-5"> 
+      <div class="row">
+      
+       
+   
+     <p class="text-center" style="font-size: smaller;"><span style="color:red;">Note</span>: For better image display and optimization, 1920px by 1080px sized images are preferrable</p>
+         <div class="row ">
+          <swiper
+          [effect]="'coverflow'"
+          [grabCursor]="true"
+          [centeredSlides]="true"
+          [slidesPerView]="'auto'"
+          [autoplay]="{
+            delay: 3000,
+            disableOnInteraction: false
+          }"
+          [coverflowEffect]="{
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true
+          }"
+       
+          [pagination]="true"
+          class="mySwiper"
+        >
+          <ng-template swiperSlide *ngFor="let gallery of galleryList">
+            <img src="{{gallery.image}}" *ngIf="gallery.image"/>
+            <video controls  *ngIf="gallery.video" width="300px" height="300px" >
+              <source src="{{gallery.video}}" type="video/mp4">
+       
+                 </video>
+            </ng-template
+
+          >
+     
+        </swiper>
+           
+         </div>
+     
+      
+  
+       
+      </div>
+      
+     </div> 
+      
+   <!-- Gallery Carousel -->
+    <div class="card ">
+     <div class="card-header">
+       <div class="row ">
+         <div class="col-4">
+           <i class="fa fa-align-justify float-start "></i>
+         </div>
+         <div class="col-4">
+           <div class="text-center">
+         Gallery  
+       </div>
+         </div>
+         <div class="col-4">
+              <a data-bs-toggle="modal" data-bs-target="#AddForm">
+         <i class="fa fa-plus float-end mx-2"></i>
+       </a>
+         </div>
+   
+       </div>
+     
+     </div>
+         <div class="card-body tableData" >
+     <table class="table  table-striped  table-hover shadow ">
+     <thead>
+       <tr>
+         <th class="col-md-3">Image</th>
+         <th class="col-md-3">Category</th>
+         <th class="col-md-3">Vendor</th>
+         <th class="col-md-3">Action</th>
+   
+       </tr>
+   
+     </thead>
+     <tbody>
+       <tr  *ngFor="let gallery of galleryList | paginate: { itemsPerPage: 5, currentPage: p }">
+         <td class="col-md-3">
+           <img [src]="gallery.image" *ngIf="gallery.image" alt=""style="width:80px;height:50px">
+           <video controls *ngIf="gallery.video" width="80px" height="50px">
+       <source [src]="gallery.video" type="video/mp4">
+
+          </video>
+           </td>
+           <td class="col-md-3">{{gallery.category.category}}</td>
+         <td class="col-md-3">{{gallery.vendor}}</td>
+         <td class="col-md-3 ">
+           
+           <span class="fa fa-edit mx-2" data-bs-toggle="modal" data-bs-target="#EditForm" (click)="getGallerybyid(gallery.id)" ></span>
+         <span><i class="fa fa-trash-o" (click)="deleteGallery(gallery.id) " ></i></span>
+       </td>
+   
+       </tr>
+      
+   
+     </tbody>
+   </table> 
+   
+   <div class="row py-2">
+     <pagination-controls class=" text-center" (pageChange)="p = $event"></pagination-controls>
+   </div>
+         </div>
+   </div>
+   </div>
+   
+   
+   <!-- Add Gallery Section -->
+   
+   <div class="modal fade 	" id="AddForm" tabindex="-1" aria-labelledby="exampleModalLabel"
+   aria-hidden="true">
+   <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">Add photo</h5>
+         <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="clearform()" aria-label="Close"></button>
+       </div>
+       <div class="modal-body">
+   
+          <form action="" method="post" [formGroup]='Form' (ngSubmit)="  SubmitGallery()" > 
+
+            
+         
+
+
+          <div class="mb-3">
+            <label class="small mb-1" >Select a File </label>
+  
+            <select class="form-select form-control" 
+            aria-label=".form-select-sm example" (change)="onselect($event)" #input >
+            <option selected disabled>Open this select menu</option>
+            <option *ngFor="let filetype of fileType" value="{{filetype.value}}" >{{filetype.type}}</option>
+          </select>    
+         </div>
+    <div *ngIf="imagePicked">
+      <div class="imgPreview mb-2">
+             <img [src]="imageData" alt="" class="image">
+           </div>
+            <div class="form-group form-group-sm my-2">
+            <input type="file" class="file-upload"  (change)='onImageSelect($event)' #fileUpload >
+    
+          </div> 
+    </div>
+
+    <div *ngIf="videoPicked">
+      <div class="Preview mb-2">
+<video [src]="videoData" width="100%" height="100%" controls autoplay>
+
+</video>     
+ </div>
+<input type="file" class="file-upload" (change)='onVideoSelect($event)'  #fileUpload>
+    </div>
+           
+
+   
+         <div class="mb-3">
+          <label class="small mb-1" for="category">Category </label>
+
+          <select class="form-select form-control" formControlName='category'
+          aria-label=".form-select-sm example">
+          <option selected disabled>Open this select menu</option>
+          <option [ngValue]="category.id" *ngFor='let category of categoryList'>{{category.category}}</option>
+
+        </select>     
+       </div>
+         
+         <div class="mb-3">
+          <label class="small mb-1" for="category">Brand </label>
+          <input class="form-control" id="category"  formControlName="vendor" type="text" placeholder="Enter your brand" >
+      </div>
+
+ 
+
+      
+   
+         
+         <div class="form-group float-end my-3">
+            <button type="submit"   style="color: goldenrod; " class="btn btn-dark" data-bs-dismiss="modal" aria-label="Close">
+         <div class="spinner-border spinner-border-sm text-warning mr-2"*ngIf="loading"  ><span class="sr-only">loading...</span></div><span style="color: goldenrod;">Submit</span> 
+   
+       </button>
+         </div>
+       
+         </form> 
+       </div>
+   
+     </div>
+   </div>
+   </div>
+   
+   
+   <!-- Edit Gallery -->
+     <div class="modal fade 	" id="EditForm" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true"> 
+     <div class="modal-dialog">
+       <div class="modal-content">
+         <div class="modal-header">
+           <h5 class="modal-title" id="exampleModalLabel">Edit Gallery </h5>
+           <button type="button" class="btn-close"  data-bs-dismiss="modal" aria-label="Close" (click)="clearform()"></button>
+         </div>
+         <div class="modal-body">
+           
+           <form action="" method="post" [formGroup]='EditGForm' (ngSubmit)=" UpdateGallery()">  
+            <div *ngIf="imagePicked">
+              <div class="imgPreview mb-2">
+               <img [src]="imageData" alt="" class="image">
+             </div>
+              <div class="form-group form-group-sm my-2">
+              <input type="file" class="file-upload" (change)='onImageSelect($event)'  #fileUpload >
+      
+            </div> 
+            </div>
+            
+      <div *ngIf="videoPicked"  >
+        <div class="Preview mb-2">
+          <video [src]="videoData" width="100%" height="100%" controls autoplay>
+          
+          </video>     
+           </div>
+          <input type="file" class="file-upload" (change)='onVideoSelect($event)'  #fileUpload>
+             
+
+      </div>
+            <div class="mb-3">
+              <label class="small mb-1" for="vendor">Brand </label>
+               <select class="form-select form-control" formControlName='category'
+               aria-label=".form-select-sm example">
+               <option selected disabled>Open this select menu</option>
+               <option [ngValue]="gallery.category.id" *ngFor='let gallery of galleryList'>{{gallery.category.category}}</option>
+   
+             </select>
+    
+           </div>
+     
+           <div class="mb-3">
+            <label class="small mb-1" for="vendor">Brand </label>
+            <input class="form-control" id="vendor"  formControlName="vendor" type="text" placeholder="Enter your brand" >
+        </div>
+  
+         
+     
+           
+           <div class="form-group float-end my-3">
+              <button type="submit"   style="color: goldenrod; " class="btn btn-dark " data-bs-dismiss="modal" aria-label="Close">
+           <div class="spinner-border spinner-border-sm text-warning mr-2"*ngIf="loading"  ><span class="sr-only">loading...</span></div><span style="color: goldenrod;">Submit</span> 
+     
+         </button>
+           </div>
+         
+           </form> 
+         </div>
+   
+       </div>
+     </div>
+   </div>

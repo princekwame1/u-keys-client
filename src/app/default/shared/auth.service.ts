@@ -7,8 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthService {
 
-  authToken:any;
-  baseURL='https://git.heroku.com/universalkeyservices.git/auth'
+  // authToken:any;
+  baseURL ="https://ukeyservices.herokuapp.com/auth";
 
   headers= new HttpHeaders()
   .set('content-type', 'application/json')
@@ -27,7 +27,7 @@ export class AuthService {
 
 
 getUserInfo():Observable<any>{
-  return this.http.get(`${this.baseURL}/userlist`,{'headers':this.headers})
+  return this.http.get(`${this.baseURL}/userlist`)
 }
 
 
@@ -43,18 +43,18 @@ PostUserInfo(userinfo:any): Observable<any>{
   formData.append("cpassword", userinfo.cpassword);
    formData.append("image", userinfo.image);
   
-  return this.http.post(`${this.baseURL}/register`, formData,{'headers':this.headers})
+  return this.http.post(`${this.baseURL}/register`, formData)
     
   }
 
 
   deleteUser(id:number){
-    return this.http.delete(`${this.baseURL}/${id}`,{'headers':this.headers})
+    return this.http.delete(`${this.baseURL}/${id}`)
 
   }
 
   getUserbyId(id:number):Observable<any>{
-    return this.http.get<any>(`${this.baseURL}/${id}`,{'headers':this.headers})
+    return this.http.get<any>(`${this.baseURL}/${id}`)
   
   }
 
@@ -66,7 +66,16 @@ PostUserInfo(userinfo:any): Observable<any>{
     formData.append("image", data.image);
     formData.append("position", data.position);
 
-    return this.http.put<any>(`${this.baseURL}/${id}`, formData,{'headers':this.headers})
+    return this.http.put<any>(`${this.baseURL}/${id}`, formData)
     
+  }
+
+
+  isLoggedIn(){
+   return localStorage.getItem('token')!=null;
+  }
+
+  GetToken(){
+    return localStorage.getItem('token') || '';
   }
 }

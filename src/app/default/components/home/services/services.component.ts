@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Services } from 'src/app/default/interface/services';
 import { HomeServiceService } from 'src/app/default/shared/home-service.service';
 import Swal from 'sweetalert2';
+declare var $: any;
 
 @Component({
   selector: 'app-services',

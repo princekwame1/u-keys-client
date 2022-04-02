@@ -1,0 +1,146 @@
+
+<div class="animate__animated animate__fadeIn">
+    <div class="text-center mt-5 pt-3 label text-muted ">
+      <h3 style="letter-spacing: .5rem; ">The Digital World </h3>
+    </div>
+  
+    <div class="  mx-auto ">
+      <div class="row mx-1 mt-4   ">
+  
+        <div class="col-md-6 card  col-sm-12 mb-4 phoneview">
+        <img src="../../../../../assets/images/social-bg.jpg" alt="" class="social">
+        </div>
+        <div class="col-md-6 card col-sm-12  bg-light phoneview ">
+          <div class="card-header text-center">
+            <i class="fa fa-align-justify float-start px-2"></i>
+  
+            <label for="">Social media Section</label>
+            <a data-bs-toggle="modal" data-bs-target="#SocialLinkForm">
+              <i class="fa fa-plus float-end"></i>
+            </a>
+  
+  
+  
+          </div>
+  <div class="card-body">
+       <table class="table table-sm table-striped table-hover ">
+            <thead>
+              <tr>
+                <th>Social</th>
+                <th>Social url</th>
+                  <th>Action</th>
+              </tr>
+            </thead>
+            <tbody class=" tableHeight ">
+              <tr *ngFor="let link of socialLinks | paginate: { itemsPerPage: 4, currentPage: p }">
+                <td class="col-3"><i class="{{link.socialcat.icon}} mx-2"
+                    style="color: {{link.socialcat.color}};"></i> {{link.socialcat.name}}</td>
+                <td class="col-5">{{link.url}}</td>
+  
+                <td class="col-2">
+                  <span class="fa fa-edit mx-2" data-bs-toggle="modal" data-bs-target="#EditSocialLinkForm"
+                    (click)="getSocialLinkbyid(link.id)"></span>
+                  <span><i class="fa fa-trash-o" (click)='deleteSocialLink(link.id)'></i></span>
+                </td>
+              </tr>
+  
+            </tbody>
+          </table>
+  <div class="row">
+            <pagination-controls class="text-center" (pageChange)="p = $event"></pagination-controls>
+  
+  </div>
+  </div>
+       
+  
+        </div>
+      </div>
+    </div>
+  
+  </div>
+  
+  
+     <!-- Social link Post Model -->
+     <div class="modal fade 	" id="SocialLinkForm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Social Link</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal bg-light "
+              [formGroup]='socialLinksForm' (ngSubmit)='SubmitSocialInfo()'>
+              <div class="form-group row my-1">
+                <label class="col-md-3 col-form-label" for="">Social media </label>
+                <div class="col-md-9">
+  
+                  <select class="form-select form-select-sm" formControlName='socialcat'
+                    aria-label=".form-select-sm example">
+                    <option selected disabled>Open this select menu</option>
+                    <option [ngValue]="category.id" *ngFor='let category of Socialcategory'>{{category.name}}</option>
+  
+                  </select>
+                </div>
+              </div>
+  
+              <div class="form-group row my-2">
+                <label class="col-md-3 col-form-label" for="text-input">Social link</label>
+                <div class="col-md-9">
+                  <input type="text" formControlName='url' class="form-control form-control-sm"
+                    placeholder="Please enter your social media url" required>
+                </div>
+              </div>
+              <button type="submit" class=" rounded float-end btn-primary" data-bs-dismiss="modal" aria-label="Close"> Add
+                <!-- <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> -->
+  
+  
+              </button>
+            </form>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  
+    <!-- Social link Edit Model -->
+    <div class="modal fade 	" id="EditSocialLinkForm" tabindex="-1" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Edit Social media handles</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal bg-light "
+              [formGroup]='EditsocialLinksForm' (ngSubmit)='UpdateSocialInfo()'>
+              <div class="form-group row my-1">
+                <label class="col-md-3 col-form-label" for=""> Social media </label>
+                <div class="col-md-9">
+                  <select class="form-select form-select-sm" formControlName='socialcat' aria-label=" ">
+                    <option selected>Select Social Media</option>
+                    <option [ngValue]="select.socialcat.id" *ngFor='let select of socialLinks'>{{select.socialcat.name}}
+                    </option>
+  
+                  </select>
+                </div>
+              </div>
+  
+              <div class="form-group row my-2">
+                <label class="col-md-3 col-form-label" for="text-input">Social link</label>
+                <div class="col-md-9">
+                  <input type="text" formControlName='url' class="form-control form-control-sm"
+                    placeholder="Please enter your social media url" required>
+                </div>
+              </div>
+  
+              <input type="submit" value="Update " class="btn-primary rounded float-end" data-bs-dismiss="modal"
+                aria-label="Close" [disabled]='EditsocialLinksForm.invalid' (click)='UpdateSocialInfo()'>
+            </form>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class HomeServiceService {
 
-  baseURl ="https://git.heroku.com/universalkeyservices.git";
+  baseURl ="https://ukeyservices.herokuapp.com";
 
   constructor(private http:HttpClient) { }
 
@@ -22,30 +22,34 @@ export class HomeServiceService {
   PostCarousel(data:any):Observable<any>{
     const formData = new FormData();
     formData.append("description", data.description);
+    formData.append("description2", data.description2);
+    formData.append("description3", data.description3);
     formData.append("image", data.image);
    
-    return this.http.post<any>(`${this.baseURl}/cms/home/carousel`, formData,{'headers':this.headers})
+    return this.http.post<any>(`${this.baseURl}/cms/home/carousel`, formData)
   
     }
 
   getCarousel():Observable<any>{
-    return this.http.get<any>(`${this.baseURl}/cms/home/carousel`,{'headers':this.headers});
+    return this.http.get<any>(`${this.baseURl}/cms/home/carousel`);
   }
   
   deleteCarousel(id:number){
-    return this.http.delete(`${this.baseURl}/cms/home/carousel/${id}`,{'headers':this.headers});
+    return this.http.delete(`${this.baseURl}/cms/home/carousel/${id}`);
   }
 
   getCarouselbyId(id:number):Observable<any>{
-    return this.http.get<any>(`${this.baseURl}/cms/home/carousel/${id}`,{'headers':this.headers})
+    return this.http.get<any>(`${this.baseURl}/cms/home/carousel/${id}`)
   
   }
   
   updateCarousel(id:number,data:any):Observable<any>{
     const formData = new FormData();
+    formData.append("description2", data.description2);
+    formData.append("description3", data.description3);
     formData.append("description", data.description);
     formData.append("image", data.image);
-   return this.http.put<any>(`${this.baseURl}/cms/home/carousel/${id}`, formData,{'headers':this.headers})
+   return this.http.put<any>(`${this.baseURl}/cms/home/carousel/${id}`, formData)
  
   }
 

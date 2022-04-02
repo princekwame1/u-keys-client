@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./default.component.scss']
 })
 export class DefaultComponent implements OnInit {
+  navIsClosed: any;
+  dashboardService: any;
 
   constructor() { }
 
   ngOnInit(): void {
   }
+  
+  toggleNav() {
+    this.navIsClosed = !this.navIsClosed;
+    this.dashboardService.navIsClosed.next(this.navIsClosed)
 
+  }
 }
