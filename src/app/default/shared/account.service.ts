@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class AccountService {
 
-  baseURl ="https://ukeyservices.herokuapp.com";
+  baseURl ="https://ukeyservicesbackend.herokuapp.com";
 
   constructor(private http:HttpClient) { }
   headers= new HttpHeaders()
@@ -21,14 +21,14 @@ PostStock(ContactData:any):Observable<any>{
 }
 
 getStock():Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/stock`)
+  return this.http.get<any>(`${this.baseURl}/stock`,{'headers':this.headers})
 }
 getStockbyID(id:number):Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/stock/${id}`)
+  return this.http.get<any>(`${this.baseURl}/stock/${id}`,{'headers':this.headers})
 }
 
 deleteStock(id:number){
-  return this.http.delete(`${this.baseURl}/stock/${id}`)
+  return this.http.delete(`${this.baseURl}/stock/${id}`,{'headers':this.headers})
 }
 
 

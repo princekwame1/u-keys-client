@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ContactService {
-  baseURl ="https://ukeyservices.herokuapp.com";
+  baseURl ="https://ukeyservicesbackend.herokuapp.com";
 
   constructor(private http:HttpClient) { }
   headers= new HttpHeaders()
@@ -21,14 +21,14 @@ PostAddress(ContactData:any):Observable<any>{
 }
 
 getAddress():Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/contact/address`)
+  return this.http.get<any>(`${this.baseURl}/cms/contact/address`,{'headers':this.headers})
 }
 getAddressbyID(id:number):Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/contact/address/${id}`)
+  return this.http.get<any>(`${this.baseURl}/cms/contact/address/${id}`,{'headers':this.headers})
 }
 
 deleteAddress(id:number){
-  return this.http.delete(`${this.baseURl}/cms/contact/address/${id}`)
+  return this.http.delete(`${this.baseURl}/cms/contact/address/${id}`,{'headers':this.headers})
 }
 
 
@@ -47,14 +47,14 @@ PostPhone(ContactData:any):Observable<any>{
 }
 
 getPhone():Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/contact/phone`)
+  return this.http.get<any>(`${this.baseURl}/cms/contact/phone`,{'headers':this.headers})
 }
 getPhonebyID(id:number):Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/contact/phone/${id}`)
+  return this.http.get<any>(`${this.baseURl}/cms/contact/phone/${id}`,{'headers':this.headers})
 }
 
 deletePhone(id:number){
-  return this.http.delete(`${this.baseURl}/cms/contact/phone/${id}`)
+  return this.http.delete(`${this.baseURl}/cms/contact/phone/${id}`,{'headers':this.headers})
 }
 
 
@@ -72,14 +72,14 @@ PostEmail(ContactData:any):Observable<any>{
 }
 
 getEmail():Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/contact/email`)
+  return this.http.get<any>(`${this.baseURl}/cms/contact/email`,{'headers':this.headers})
 }
 getEmailbyID(id:number):Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/contact/email/${id}`)
+  return this.http.get<any>(`${this.baseURl}/cms/contact/email/${id}`,{'headers':this.headers})
 }
 
 deleteEmail(id:number){
-  return this.http.delete(`${this.baseURl}/cms/contact/email/${id}`)
+  return this.http.delete(`${this.baseURl}/cms/contact/email/${id}`,{'headers':this.headers})
 }
 
 

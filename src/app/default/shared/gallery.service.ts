@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class GalleryService {
  
-  baseURl ="https://ukeyservices.herokuapp.com";
+  baseURl ="https://ukeyservicesbackend.herokuapp.com";
   constructor(private http:HttpClient) { }
 
   headers= new HttpHeaders()
@@ -18,15 +18,15 @@ export class GalleryService {
   // Gallery Section
 
 getGallery():Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/gallery/main`)
+  return this.http.get<any>(`${this.baseURl}/cms/gallery/main`,{'headers':this.headers})
 }
 
 getGallerybyId(id:number):Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/gallery/main/${id}`)
+  return this.http.get<any>(`${this.baseURl}/cms/gallery/main/${id}`,{'headers':this.headers})
 }
 
 deleteGallery(id:number):Observable<any>{
-  return this.http.delete<any>(`${this.baseURl}/cms/gallery/main/${id}`)
+  return this.http.delete<any>(`${this.baseURl}/cms/gallery/main/${id}`,{'headers':this.headers})
 }
 
 putGallery(id:number , data:any):Observable<any>{
@@ -36,14 +36,14 @@ putGallery(id:number , data:any):Observable<any>{
         formData.append('category',data.category);
   formData.append('vendor',data.vendor);
   formData.append('video',data.video)
-  return this.http.put<any>(`${this.baseURl}/cms/gallery/main-video/${id}`,formData)
+  return this.http.put<any>(`${this.baseURl}/cms/gallery/main-video/${id}`,formData,{'headers':this.headers})
 
   }else{
   const formData = new FormData();
   formData.append('category',data.category);
 formData.append('vendor',data.vendor);
   formData.append('image',data.image);
-  return this.http.put<any>(`${this.baseURl}/cms/gallery/main/${id}`,formData)
+  return this.http.put<any>(`${this.baseURl}/cms/gallery/main/${id}`,formData,{'headers':this.headers})
 
   }
 
@@ -56,7 +56,7 @@ if(data.image===null){
   formData.append("category", data.category);
   formData.append("vendor", data.vendor); 
   formData.append("video",data.video)
-  return this.http.post<any>(`${this.baseURl}/cms/gallery/main-video`, formData)
+  return this.http.post<any>(`${this.baseURl}/cms/gallery/main-video`, formData,{'headers':this.headers})
 
 }else{
   const formData = new FormData();
@@ -64,7 +64,7 @@ if(data.image===null){
   formData.append("vendor", data.vendor); 
   formData.append("image", data.image);
 
-  return this.http.post<any>(`${this.baseURl}/cms/gallery/main`, formData)
+  return this.http.post<any>(`${this.baseURl}/cms/gallery/main`, formData,{'headers':this.headers})
 }
 
 }
@@ -78,19 +78,19 @@ PostGalleryCat(data:any):Observable<any>{
   }
   
   getGalleryCat():Observable<any>{
-    return this.http.get<any>(`${this.baseURl}/cms/gallery/category`)
+    return this.http.get<any>(`${this.baseURl}/cms/gallery/category`,{'headers':this.headers})
   }
   
   getGalleryCatbyId(id:number):Observable<any>{
-    return this.http.get<any>(`${this.baseURl}/cms/gallery/category/${id}`)
+    return this.http.get<any>(`${this.baseURl}/cms/gallery/category/${id}`,{'headers':this.headers})
   }
   
   deleteGalleryCat(id:number){
-    return this.http.delete(`${this.baseURl}/cms/gallery/category/${id}`)
+    return this.http.delete(`${this.baseURl}/cms/gallery/category/${id}`,{'headers':this.headers})
   }
   
   putGalleryCat(id:number , data:any):Observable<any>{
    
-    return this.http.put<any>(`${this.baseURl}/cms/gallery/category/${id}`,data)
+    return this.http.put<any>(`${this.baseURl}/cms/gallery/category/${id}`,data,{'headers':this.headers})
   }
 }
