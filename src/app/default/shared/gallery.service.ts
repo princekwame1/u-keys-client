@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GalleryService {
-  baseURl ="http://localhost:8000";
+  baseURl ="https://ukey-server.vercel.app";
 
   // baseURl ="https://ukeyservicesbackend.herokuapp.com";
   constructor(private http:HttpClient) { }

@@ -10,8 +10,8 @@ import { Ceoprofile } from '../interface/ceoprofile';
 })
 export class AboutService {
 
-  // baseURl ="https://ukeyservicesbackend.herokuapp.com";
-  baseURl ="http://localhost:8000";
+   baseURl ="https://ukey-server.vercel.app";
+  // baseURl ="http://localhost:8000";
 
   constructor(private http:HttpClient) { }
 

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class AuthService {
 
   // authToken:any;
-   baseURL='http://localhost:8000/auth'
+  baseURL ="https://ukey-server.vercel.app";
   // baseURL ="https://ukeyservicesbackend.herokuapp.com/auth";
 
   headers= new HttpHeaders()

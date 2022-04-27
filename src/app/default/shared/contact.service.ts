@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ContactService {
   // baseURl ="https://ukeyservicesbackend.herokuapp.com";
-  baseURl ="http://localhost:8000";
+  baseURl ="https://ukey-server.vercel.app";
 
   constructor(private http:HttpClient) { }
   headers= new HttpHeaders()
