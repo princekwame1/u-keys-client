@@ -10,7 +10,8 @@ import { Ceoprofile } from '../interface/ceoprofile';
 })
 export class AboutService {
 
-  baseURl ="https://ukeyservicesbackend.herokuapp.com";
+  // baseURl ="https://ukeyservicesbackend.herokuapp.com";
+  baseURl ="http://localhost:8000";
 
   constructor(private http:HttpClient) { }
 
@@ -26,18 +27,18 @@ PostAbout(description: string, image: File):Observable<About>{
   const formData = new FormData();
   formData.append("description", description);
   formData.append("image", image);
- return this.http.post<About>(`${this.baseURl}/cms/about/whatwedo`, formData,{'headers':this.headers})
+ return this.http.post<About>(`${this.baseURl}/cms/about/whatwedo`, formData)
  
   }
 getAbout():Observable<About>{
-  return this.http.get<About>(`${this.baseURl}/cms/about/whatwedo`,{'headers':this.headers});
+  return this.http.get<About>(`${this.baseURl}/cms/about/whatwedo`);
 }
 
 deleteAbout(id:number):Observable<About>{
-  return this.http.delete<About>(`${this.baseURl}/cms/about/whatwedo/${id}`,{'headers':this.headers});
+  return this.http.delete<About>(`${this.baseURl}/cms/about/whatwedo/${id}`);
 }
 getAboutbyId(id:number):Observable<About>{
-  return this.http.get<About>(`${this.baseURl}/cms/about/whatwedo/${id}`,{'headers':this.headers})
+  return this.http.get<About>(`${this.baseURl}/cms/about/whatwedo/${id}`)
 
 }
 
@@ -45,7 +46,7 @@ updateAbout(id:number,data:any):Observable<any>{
   const formData = new FormData();
   formData.append("description", data.description);
   formData.append("image", data.image);
- return this.http.put<any>(`${this.baseURl}/cms/about/whatwedo/${id}`, formData,{'headers':this.headers})
+ return this.http.put<any>(`${this.baseURl}/cms/about/whatwedo/${id}`, formData)
  
 }
 
@@ -55,18 +56,18 @@ PostCeo(description: string, image: File):Observable<Ceoprofile>{
   const formData = new FormData();
   formData.append("description", description);
   formData.append("image", image);
- return this.http.post<Ceoprofile>(`${this.baseURl}/cms/about/ceo`, formData,{'headers':this.headers})
+ return this.http.post<Ceoprofile>(`${this.baseURl}/cms/about/ceo`, formData)
  
   }
 getCeo():Observable<Ceoprofile>{
-  return this.http.get<Ceoprofile>(`${this.baseURl}/cms/about/ceo`,{'headers':this.headers});
+  return this.http.get<Ceoprofile>(`${this.baseURl}/cms/about/ceo`);
 }
 
 deleteCeo(id:number):Observable<Ceoprofile>{
-  return this.http.delete<Ceoprofile>(`${this.baseURl}/cms/about/ceo/${id}`,{'headers':this.headers});
+  return this.http.delete<Ceoprofile>(`${this.baseURl}/cms/about/ceo/${id}`);
 }
 getCeobyId(id:number):Observable<Ceoprofile>{
-  return this.http.get<Ceoprofile>(`${this.baseURl}/cms/about/ceo/${id}`,{'headers':this.headers})
+  return this.http.get<Ceoprofile>(`${this.baseURl}/cms/about/ceo/${id}`)
 
 }
 
@@ -74,7 +75,7 @@ updateCeo(id:number,data:any):Observable<any>{
   const formData = new FormData();
   formData.append("description", data.description);
   formData.append("image", data.image);
- return this.http.put<any>(`${this.baseURl}/cms/about/ceo/${id}`, formData,{'headers':this.headers})
+ return this.http.put<any>(`${this.baseURl}/cms/about/ceo/${id}`, formData)
  
 }
 
@@ -82,24 +83,24 @@ updateCeo(id:number,data:any):Observable<any>{
 // Category Section
 PostCategory(CategoryData:any):Observable<Category>{
   const body=JSON.stringify(CategoryData);
- return this.http.post<Category>(`${this.baseURl}/cms/about/social/category`,body,{'headers':this.headers})
+ return this.http.post<Category>(`${this.baseURl}/cms/about/social/category`,body)
 }
 
 getCategory():Observable<Category>{
-  return this.http.get<Category>(`${this.baseURl}/cms/about/social/category`,{'headers':this.headers})
+  return this.http.get<Category>(`${this.baseURl}/cms/about/social/category`)
 }
 getCategorybyID(id:number):Observable<Category>{
-  return this.http.get<Category>(`${this.baseURl}/cms/about/social/category/${id}`,{'headers':this.headers})
+  return this.http.get<Category>(`${this.baseURl}/cms/about/social/category/${id}`)
 }
 
 deleteCategory(id:number){
-  return this.http.delete(`${this.baseURl}/cms/about/social/category/${id}`,{'headers':this.headers})
+  return this.http.delete(`${this.baseURl}/cms/about/social/category/${id}`)
 }
 
 
 UpdateCategory(id:number,UpdatedData:any):Observable<any>{
   const body=JSON.stringify(UpdatedData);
-return this.http.put(`${this.baseURl}/cms/about/social/category/${id}`,body,{'headers':this.headers})
+return this.http.put(`${this.baseURl}/cms/about/social/category/${id}`,body)
 }
 
 
@@ -107,24 +108,24 @@ return this.http.put(`${this.baseURl}/cms/about/social/category/${id}`,body,{'he
 
 PostSocialLink(socialLinkData:any):Observable<any>{
   const body=JSON.stringify(socialLinkData);
- return this.http.post<any>(`${this.baseURl}/cms/about/social`,body,{'headers':this.headers})
+ return this.http.post<any>(`${this.baseURl}/cms/about/social`,body)
 }
 
 getSocialLink():Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/about/social`,{'headers':this.headers})
+  return this.http.get<any>(`${this.baseURl}/cms/about/social`)
 }
 getSocialLinkID(id:number):Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/about/social/${id}`,{'headers':this.headers})
+  return this.http.get<any>(`${this.baseURl}/cms/about/social/${id}`)
 }
 
 deleteSocialLink(id:number){
-  return this.http.delete(`${this.baseURl}/cms/about/social/${id}`,{'headers':this.headers})
+  return this.http.delete(`${this.baseURl}/cms/about/social/${id}`)
 }
 
 
 UpdateSocialLink(id:number,UpdatedData:any){
   const body=JSON.stringify(UpdatedData);
-  return this.http.put(`${this.baseURl}/cms/about/social/${id}`,body,{'headers':this.headers})
+  return this.http.put(`${this.baseURl}/cms/about/social/${id}`,body)
 }
 
 
@@ -136,18 +137,18 @@ PostPartner(data:any):Observable<any>{
   formData.append("description", data.description);
  formData.append("phone", data.phone);
   formData.append("image", data.image);
- return this.http.post(`${this.baseURl}/cms/about/partner`, formData,{'headers':this.headers})
+ return this.http.post(`${this.baseURl}/cms/about/partner`, formData)
  
   }
 getPartner():Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/about/partner`,{'headers':this.headers});
+  return this.http.get<any>(`${this.baseURl}/cms/about/partner`);
 }
 
 deletePartner(id:number){
-  return this.http.delete(`${this.baseURl}/cms/about/partner/${id}`,{'headers':this.headers});
+  return this.http.delete(`${this.baseURl}/cms/about/partner/${id}`);
 }
 getPartnerbyId(id:number):Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/about/partner/${id}`,{'headers':this.headers})
+  return this.http.get<any>(`${this.baseURl}/cms/about/partner/${id}`)
 
 }
 
@@ -157,7 +158,7 @@ updatePartner(id:number ,data:any):Observable<any>{
   formData.append("description", data.description);
  formData.append("phone", data.phone);
   formData.append("image", data.image);
-  return this.http.put<any>(`${this.baseURl}/cms/about/partner/${id}`, formData,{'headers':this.headers})
+  return this.http.put<any>(`${this.baseURl}/cms/about/partner/${id}`, formData)
   
 }
 

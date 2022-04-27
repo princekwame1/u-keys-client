@@ -75,8 +75,7 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ukeysAdmin:build:production",
-              "proxyConfig": "src/proxy.conf.json"
+              "browserTarget": "ukeysAdmin:build:production"
             },
             "development": {
               "browserTarget": "ukeysAdmin:build:development"

@@ -7,7 +7,8 @@ import { Observable } from 'rxjs';
 })
 export class HomeServiceService {
 
-  baseURl ="https://ukeyservicesbackend.herokuapp.com";
+  // baseURl ="https://ukeyservicesbackend.herokuapp.com";
+  baseURl ="http://localhost:8000";
 
   constructor(private http:HttpClient) { }
 
@@ -26,20 +27,20 @@ export class HomeServiceService {
     formData.append("description3", data.description3);
     formData.append("image", data.image);
    
-    return this.http.post<any>(`${this.baseURl}/cms/home/carousel`, formData,{'headers':this.headers})
+    return this.http.post<any>(`${this.baseURl}/cms/home/carousel`, formData)
   
     }
 
   getCarousel():Observable<any>{
-    return this.http.get<any>(`${this.baseURl}/cms/home/carousel`,{'headers':this.headers});
+    return this.http.get<any>(`${this.baseURl}/cms/home/carousel`);
   }
   
   deleteCarousel(id:number){
-    return this.http.delete(`${this.baseURl}/cms/home/carousel/${id}`,{'headers':this.headers});
+    return this.http.delete(`${this.baseURl}/cms/home/carousel/${id}`);
   }
 
   getCarouselbyId(id:number):Observable<any>{
-    return this.http.get<any>(`${this.baseURl}/cms/home/carousel/${id}`,{'headers':this.headers})
+    return this.http.get<any>(`${this.baseURl}/cms/home/carousel/${id}`,)
   
   }
   
@@ -49,7 +50,7 @@ export class HomeServiceService {
     formData.append("description3", data.description3);
     formData.append("description", data.description);
     formData.append("image", data.image);
-   return this.http.put<any>(`${this.baseURl}/cms/home/carousel/${id}`, formData,{'headers':this.headers})
+   return this.http.put<any>(`${this.baseURl}/cms/home/carousel/${id}`, formData)
  
   }
 
@@ -58,26 +59,26 @@ export class HomeServiceService {
   //Home Information Section
 
   PostInfo(data:any):Observable<any>{
- return this.http.post<any>(`${this.baseURl}/cms/home/info`, data,{'headers':this.headers})
+ return this.http.post<any>(`${this.baseURl}/cms/home/info`, data)
   
     }
 
   getInfo():Observable<any>{
-    return this.http.get<any>(`${this.baseURl}/cms/home/info`,{'headers':this.headers});
+    return this.http.get<any>(`${this.baseURl}/cms/home/info`);
   }
   
   deleteInfo(id:number){
-    return this.http.delete(`${this.baseURl}/cms/home/info/${id}`,{'headers':this.headers});
+    return this.http.delete(`${this.baseURl}/cms/home/info/${id}`);
   }
   
   getInfobyId(id:number):Observable<any>{
-    return this.http.get<any>(`${this.baseURl}/cms/home/info/${id}`,{'headers':this.headers})
+    return this.http.get<any>(`${this.baseURl}/cms/home/info/${id}`)
   
   }
   
   updateInfo(id:number,data:any):Observable<any>{
     
-   return this.http.put<any>(`${this.baseURl}/cms/home/info/${id}`, data,{'headers':this.headers})
+   return this.http.put<any>(`${this.baseURl}/cms/home/info/${id}`, data)
  
   }
 
@@ -86,26 +87,26 @@ export class HomeServiceService {
     //Home Services  Section
 
     PostService(data:any):Observable<any>{
-   return this.http.post<any>(`${this.baseURl}/cms/home/services`, data,{'headers':this.headers})
+   return this.http.post<any>(`${this.baseURl}/cms/home/services`, data)
     
       }
   
     getService():Observable<any>{
-      return this.http.get<any>(`${this.baseURl}/cms/home/services`,{'headers':this.headers});
+      return this.http.get<any>(`${this.baseURl}/cms/home/services`);
     }
     
     deleteService(id:number){
-      return this.http.delete(`${this.baseURl}/cms/home/services/${id}`,{'headers':this.headers});
+      return this.http.delete(`${this.baseURl}/cms/home/services/${id}`);
     }
     
     getServicebyId(id:number):Observable<any>{
-      return this.http.get<any>(`${this.baseURl}/cms/home/services/${id}`,{'headers':this.headers})
+      return this.http.get<any>(`${this.baseURl}/cms/home/services/${id}`)
     
     }
     
     updateService(id:number,data:any):Observable<any>{
       
-     return this.http.put<any>(`${this.baseURl}/cms/home/services/${id}`, data,{'headers':this.headers})
+     return this.http.put<any>(`${this.baseURl}/cms/home/services/${id}`, data)
    
     }
 
@@ -117,20 +118,20 @@ export class HomeServiceService {
         const formData = new FormData();
         formData.append("description", data.description);
         formData.append("image", data.image);
-     return this.http.post<any>(`${this.baseURl}/cms/home/gallery`, formData,{'headers':this.headers})
+     return this.http.post<any>(`${this.baseURl}/cms/home/gallery`, formData)
       
         }
     
       getGallery():Observable<any>{
-        return this.http.get<any>(`${this.baseURl}/cms/home/gallery`,{'headers':this.headers});
+        return this.http.get<any>(`${this.baseURl}/cms/home/gallery`);
       }
       
       deleteGallery(id:number){
-        return this.http.delete(`${this.baseURl}/cms/home/gallery/${id}`,{'headers':this.headers});
+        return this.http.delete(`${this.baseURl}/cms/home/gallery/${id}`);
       }
       
       getGallerybyId(id:number):Observable<any>{
-        return this.http.get<any>(`${this.baseURl}/cms/home/gallery/${id}`,{'headers':this.headers})
+        return this.http.get<any>(`${this.baseURl}/cms/home/gallery/${id}`)
       
       }
       
@@ -138,7 +139,7 @@ export class HomeServiceService {
         const formData = new FormData();
         formData.append("description", data.description);
         formData.append("image", data.image);
-       return this.http.put<any>(`${this.baseURl}/cms/home/gallery/${id}`, formData,{'headers':this.headers})
+       return this.http.put<any>(`${this.baseURl}/cms/home/gallery/${id}`, formData)
      
       }
 

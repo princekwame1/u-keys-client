@@ -6,8 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class GalleryService {
- 
-  baseURl ="https://ukeyservicesbackend.herokuapp.com";
+  baseURl ="http://localhost:8000";
+
+  // baseURl ="https://ukeyservicesbackend.herokuapp.com";
   constructor(private http:HttpClient) { }
 
   headers= new HttpHeaders()

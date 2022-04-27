@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DashboardService } from './shared/dashboard.service';
 
 @Component({
   selector: 'app-default',
@@ -7,9 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DefaultComponent implements OnInit {
   navIsClosed: any;
-  dashboardService: any;
 
-  constructor() { }
+
+  constructor(private dashboardService:DashboardService) { }
 
   ngOnInit(): void {
   }
