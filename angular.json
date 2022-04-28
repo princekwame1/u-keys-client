@@ -20,7 +20,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "proxyConfig": "src/proxy.conf.json",
             "outputPath": "dist/ukeys-admin",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -73,6 +72,11 @@
           "defaultConfiguration": "production"
         },
         "serve": {
+          "options": {
+            "port": 8000,
+            "proxyConfig": "src/proxy.config.json"
+
+          },
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
