@@ -73,7 +73,6 @@
         },
         "serve": {
           "options": {
-            "port": 8000,
             "proxyConfig": "src/proxy.config.json"
 
           },
