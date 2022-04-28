@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
 loginData:any;
 hide:boolean=true;
 private readonly notifier: NotifierService;
-  constructor(private authService:AuthService, private route:Router ,notifierService: NotifierService) { 
+  constructor(private authService:AuthService, private route:Router ,public notifierService: NotifierService) { 
     this.notifier = notifierService;
   
   }
@@ -31,6 +31,8 @@ private readonly notifier: NotifierService;
         // console.log(response.token)
 if(response !=null){
 this.loginData=response;
+this.notifier.notify('success', 'You are awesome! I mean it!');
+
 localStorage.setItem('token',this.loginData.token);
 // localStorage.setItem('user',this.loginData.user);
 this.route.navigate(['/dashboard'])
