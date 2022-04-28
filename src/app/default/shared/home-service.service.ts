@@ -32,7 +32,7 @@ export class HomeServiceService {
     }
 
   getCarousel():Observable<any>{
-    return this.http.get<any>(`${this.baseURl}/cms/home/carousel`);
+    return this.http.get<any>(`${this.baseURl}/cms/home/carousel`,{'headers':this.headers});
   }
   
   deleteCarousel(id:number){
@@ -40,7 +40,7 @@ export class HomeServiceService {
   }
 
   getCarouselbyId(id:number):Observable<any>{
-    return this.http.get<any>(`${this.baseURl}/cms/home/carousel/${id}`,)
+    return this.http.get<any>(`${this.baseURl}/cms/home/carousel/${id}`,{'headers':this.headers})
   
   }
   
@@ -64,7 +64,7 @@ export class HomeServiceService {
     }
 
   getInfo():Observable<any>{
-    return this.http.get<any>(`${this.baseURl}/cms/home/info`);
+    return this.http.get<any>(`${this.baseURl}/cms/home/info`,{'headers':this.headers});
   }
   
   deleteInfo(id:number){
@@ -72,7 +72,7 @@ export class HomeServiceService {
   }
   
   getInfobyId(id:number):Observable<any>{
-    return this.http.get<any>(`${this.baseURl}/cms/home/info/${id}`)
+    return this.http.get<any>(`${this.baseURl}/cms/home/info/${id}`,{'headers':this.headers})
   
   }
   
@@ -92,7 +92,7 @@ export class HomeServiceService {
       }
   
     getService():Observable<any>{
-      return this.http.get<any>(`${this.baseURl}/cms/home/services`);
+      return this.http.get<any>(`${this.baseURl}/cms/home/services`,{'headers':this.headers});
     }
     
     deleteService(id:number){
@@ -100,7 +100,7 @@ export class HomeServiceService {
     }
     
     getServicebyId(id:number):Observable<any>{
-      return this.http.get<any>(`${this.baseURl}/cms/home/services/${id}`)
+      return this.http.get<any>(`${this.baseURl}/cms/home/services/${id}`,{'headers':this.headers})
     
     }
     
@@ -123,7 +123,7 @@ export class HomeServiceService {
         }
     
       getGallery():Observable<any>{
-        return this.http.get<any>(`${this.baseURl}/cms/home/gallery`);
+        return this.http.get<any>(`${this.baseURl}/cms/home/gallery`,{'headers':this.headers});
       }
       
       deleteGallery(id:number){
@@ -131,7 +131,7 @@ export class HomeServiceService {
       }
       
       getGallerybyId(id:number):Observable<any>{
-        return this.http.get<any>(`${this.baseURl}/cms/home/gallery/${id}`)
+        return this.http.get<any>(`${this.baseURl}/cms/home/gallery/${id}`,{'headers':this.headers})
       
       }
       

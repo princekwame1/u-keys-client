@@ -31,14 +31,14 @@ PostAbout(description: string, image: File):Observable<About>{
  
   }
 getAbout():Observable<About>{
-  return this.http.get<About>(`${this.baseURl}/cms/about/whatwedo`);
+  return this.http.get<About>(`${this.baseURl}/cms/about/whatwedo`,{'headers':this.headers});
 }
 
 deleteAbout(id:number):Observable<About>{
   return this.http.delete<About>(`${this.baseURl}/cms/about/whatwedo/${id}`);
 }
 getAboutbyId(id:number):Observable<About>{
-  return this.http.get<About>(`${this.baseURl}/cms/about/whatwedo/${id}`)
+  return this.http.get<About>(`${this.baseURl}/cms/about/whatwedo/${id}`,{'headers':this.headers})
 
 }
 
@@ -60,14 +60,14 @@ PostCeo(description: string, image: File):Observable<Ceoprofile>{
  
   }
 getCeo():Observable<Ceoprofile>{
-  return this.http.get<Ceoprofile>(`${this.baseURl}/cms/about/ceo`);
+  return this.http.get<Ceoprofile>(`${this.baseURl}/cms/about/ceo`,{'headers':this.headers});
 }
 
 deleteCeo(id:number):Observable<Ceoprofile>{
   return this.http.delete<Ceoprofile>(`${this.baseURl}/cms/about/ceo/${id}`);
 }
 getCeobyId(id:number):Observable<Ceoprofile>{
-  return this.http.get<Ceoprofile>(`${this.baseURl}/cms/about/ceo/${id}`)
+  return this.http.get<Ceoprofile>(`${this.baseURl}/cms/about/ceo/${id}`,{'headers':this.headers})
 
 }
 
@@ -87,10 +87,10 @@ PostCategory(CategoryData:any):Observable<Category>{
 }
 
 getCategory():Observable<Category>{
-  return this.http.get<Category>(`${this.baseURl}/cms/about/social/category`)
+  return this.http.get<Category>(`${this.baseURl}/cms/about/social/category`,{'headers':this.headers})
 }
 getCategorybyID(id:number):Observable<Category>{
-  return this.http.get<Category>(`${this.baseURl}/cms/about/social/category/${id}`)
+  return this.http.get<Category>(`${this.baseURl}/cms/about/social/category/${id}`,{'headers':this.headers})
 }
 
 deleteCategory(id:number){
@@ -112,10 +112,10 @@ PostSocialLink(socialLinkData:any):Observable<any>{
 }
 
 getSocialLink():Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/about/social`)
+  return this.http.get<any>(`${this.baseURl}/cms/about/social`,{'headers':this.headers})
 }
 getSocialLinkID(id:number):Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/about/social/${id}`)
+  return this.http.get<any>(`${this.baseURl}/cms/about/social/${id}`,{'headers':this.headers})
 }
 
 deleteSocialLink(id:number){
@@ -141,14 +141,14 @@ PostPartner(data:any):Observable<any>{
  
   }
 getPartner():Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/about/partner`);
+  return this.http.get<any>(`${this.baseURl}/cms/about/partner`,{'headers':this.headers});
 }
 
 deletePartner(id:number){
   return this.http.delete(`${this.baseURl}/cms/about/partner/${id}`);
 }
 getPartnerbyId(id:number):Observable<any>{
-  return this.http.get<any>(`${this.baseURl}/cms/about/partner/${id}`)
+  return this.http.get<any>(`${this.baseURl}/cms/about/partner/${id}`,{'headers':this.headers})
 
 }
 
