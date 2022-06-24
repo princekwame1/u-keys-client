@@ -24,12 +24,7 @@ import { NotifierModule } from 'angular-notifier';
 
   ],
   providers: [
-    // AuthGuard,
-    {
-     provide:HTTP_INTERCEPTORS,
-     useClass:TokenInterceptorService,
-     multi:true 
-    }
+  
   ],
   bootstrap: [AppComponent]
 })
